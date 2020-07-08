@@ -1,3 +1,3 @@
-struct mamba_ios_networking {
+struct MambaNetworking {
     var text = "Hello, World!"
 }

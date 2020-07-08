@@ -1,12 +1,12 @@
 import XCTest
-@testable import mamba_ios_networking
+@testable import MambaNetworking
 
-final class mamba_ios_networkingTests: XCTestCase {
+final class MambaNetworkingTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(mamba_ios_networking().text, "Hello, World!")
+        XCTAssertEqual(MambaNetworking().text, "Hello, World!")
     }
 
     static var allTests = [

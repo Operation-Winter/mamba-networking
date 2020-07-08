@@ -1,7 +1,7 @@
 import XCTest
 
-import mamba_ios_networkingTests
+import MambaNetworkingTests
 
 var tests = [XCTestCaseEntry]()
-tests += mamba_ios_networkingTests.allTests()
+tests += MambaNetworkingTests.allTests()
 XCTMain(tests)

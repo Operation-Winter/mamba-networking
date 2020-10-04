@@ -1,6 +1,6 @@
 //
 //  PlanningSessionStateMessage.swift
-//  mamba
+//  MambaNetworking
 //
 //  Created by Armand Kamffer on 2020/07/30.
 //  Copyright © 2020 Armand Kamffer. All rights reserved.

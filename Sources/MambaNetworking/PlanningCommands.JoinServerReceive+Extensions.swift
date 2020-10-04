@@ -1,6 +1,6 @@
 //
 //  PlanningCommand.JoinServerReceive+Extensions.swift
-//  mamba
+//  MambaNetworking
 //
 //  Created by Armand Kamffer on 2020/07/31.
 //  Copyright © 2020 Armand Kamffer. All rights reserved.

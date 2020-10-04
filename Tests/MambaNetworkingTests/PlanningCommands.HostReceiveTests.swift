@@ -30,7 +30,7 @@ class PlanningCommands_HostReceiveTests: XCTestCase {
             XCTAssertEqual(message.sessionName, Expected.stateMessage.sessionName)
             XCTAssertEqual(message.availableCards, Expected.stateMessage.availableCards)
             
-            XCTAssertEqual(message.participants.first?.id, Expected.stateMessage.participants.first?.id)
+            XCTAssertEqual(message.participants.first?.participantId, Expected.stateMessage.participants.first?.participantId)
             XCTAssertEqual(message.participants.first?.name, Expected.stateMessage.participants.first?.name)
             
             XCTAssertEqual(message.ticket?.title, Expected.stateMessage.ticket?.title)
@@ -62,7 +62,7 @@ class PlanningCommands_HostReceiveTests: XCTestCase {
             XCTAssertEqual(message.sessionName, Expected.stateMessage.sessionName)
             XCTAssertEqual(message.availableCards, Expected.stateMessage.availableCards)
             
-            XCTAssertEqual(message.participants.first?.id, Expected.stateMessage.participants.first?.id)
+            XCTAssertEqual(message.participants.first?.participantId, Expected.stateMessage.participants.first?.participantId)
             XCTAssertEqual(message.participants.first?.name, Expected.stateMessage.participants.first?.name)
             
             XCTAssertEqual(message.ticket?.title, Expected.stateMessage.ticket?.title)
@@ -94,7 +94,7 @@ class PlanningCommands_HostReceiveTests: XCTestCase {
             XCTAssertEqual(message.sessionName, Expected.stateMessage.sessionName)
             XCTAssertEqual(message.availableCards, Expected.stateMessage.availableCards)
             
-            XCTAssertEqual(message.participants.first?.id, Expected.stateMessage.participants.first?.id)
+            XCTAssertEqual(message.participants.first?.participantId, Expected.stateMessage.participants.first?.participantId)
             XCTAssertEqual(message.participants.first?.name, Expected.stateMessage.participants.first?.name)
             
             XCTAssertEqual(message.ticket?.title, Expected.stateMessage.ticket?.title)
@@ -133,32 +133,48 @@ class PlanningCommands_HostReceiveTests: XCTestCase {
 
 fileprivate class Mocks {
     static let noneState = """
-    { "type": "NONE_STATE", "message": {
-            "sessionCode": "000000", "sessionName": "Test", "availableCards": ["COFFEE"],
-            "participants": [{ "id": "x", "name": "Test" }], "ticket": {
-                "identifier": "x", "description":"Test", "ticketVotes": [{"user": { "id": "x", "name": "Test" }, "selectedCard": "COFFEE"}]
+    {
+        "type": "NONE_STATE",
+        "message": {
+            "sessionCode": "000000",
+            "sessionName": "Test",
+            "availableCards": ["COFFEE"],
+            "participants": [
+                {"participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "name": "Test" }
+            ],
+            "ticket": {
+                "title": "x",
+                "description":"Test",
+                "ticketVotes": [{"participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "selectedCard": "COFFEE"}]
             }
-        }
+        },
+        "uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"
     }
     """
     
     static let votingState = """
-    { "type": "VOTING_STATE", "message": {
+    {
+        "type": "VOTING_STATE",
+        "message": {
             "sessionCode": "000000", "sessionName": "Test", "availableCards": ["COFFEE"],
-            "participants": [{ "id": "x", "name": "Test" }], "ticket": {
-                "identifier": "x", "description":"Test", "ticketVotes": [{"user": { "id": "x", "name": "Test" }, "selectedCard": "COFFEE"}]
+            "participants": [{ "participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "name": "Test" }], "ticket": {
+                "title": "x", "description":"Test", "ticketVotes": [{"participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "selectedCard": "COFFEE"}]
             }
-        }
+        },
+        "uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"
     }
     """
     
     static let finishedVotingState = """
-    { "type": "FINISHED_STATE", "message": {
+    {
+        "type": "FINISHED_STATE",
+        "message": {
             "sessionCode": "000000", "sessionName": "Test", "availableCards": ["COFFEE"],
-            "participants": [{ "id": "x", "name": "Test" }], "ticket": {
-                "identifier": "x", "description":"Test", "ticketVotes": [{"user": { "id": "x", "name": "Test" }, "selectedCard": "COFFEE"}]
+            "participants": [{ "participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "name": "Test" }], "ticket": {
+                "title": "x", "description":"Test", "ticketVotes": [{"participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "selectedCard": "COFFEE"}]
             }
-        }
+        },
+        "uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"
     }
     """
     
@@ -169,13 +185,13 @@ fileprivate class Mocks {
 
 fileprivate class Expected {
     static let stateMessage: PlanningSessionStateMessage = {
-        let planningTicket = PlanningTicket(title: "x", description: "Test", ticketVotes: [PlanningTicketVote(participantId: UUID(), selectedCard: .coffee)])
+        let planningTicket = PlanningTicket(title: "x", description: "Test", ticketVotes: [PlanningTicketVote(participantId: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), selectedCard: .coffee)])
         
         return PlanningSessionStateMessage(sessionCode: "000000",
                                            sessionName: "Test",
                                            availableCards: [.coffee],
                                            participants: [
-                                            PlanningParticipant(participantId: UUID(), name: "Test")
+                                            PlanningParticipant(participantId: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), name: "Test")
                                            ], ticket: planningTicket)
     }()
     

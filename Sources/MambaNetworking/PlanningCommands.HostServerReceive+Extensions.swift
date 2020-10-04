@@ -51,12 +51,26 @@ public extension PlanningCommands.HostServerReceive {
         try container.encode(self.rawValue, forKey: .type)
         
         switch self {
-        case .startSession(_, let message): try container.encode(message, forKey: .message)
-        case .addTicket(_, let message): try container.encode(message, forKey: .message)
-        case .skipVote(_, let message): try container.encode(message, forKey: .message)
-        case .removeParticipant(_, let message): try container.encode(message, forKey: .message)
-        default:
-            break
+        case .startSession(let uuid, let message):
+            try container.encode(uuid, forKey: .uuid)
+            try container.encode(message, forKey: .message)
+        case .addTicket(let uuid, let message):
+            try container.encode(uuid, forKey: .uuid)
+            try container.encode(message, forKey: .message)
+        case .skipVote(let uuid, let message):
+            try container.encode(uuid, forKey: .uuid)
+            try container.encode(message, forKey: .message)
+        case .removeParticipant(let uuid, let message):
+            try container.encode(uuid, forKey: .uuid)
+            try container.encode(message, forKey: .message)
+        case .endSession(let uuid):
+            try container.encode(uuid, forKey: .uuid)
+        case .finishVoting(let uuid):
+            try container.encode(uuid, forKey: .uuid)
+        case .revote(let uuid):
+            try container.encode(uuid, forKey: .uuid)
+        case .reconnect(let uuid):
+            try container.encode(uuid, forKey: .uuid)
         }
     }
     

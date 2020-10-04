@@ -41,10 +41,16 @@ public extension PlanningCommands.JoinServerReceive {
         try container.encode(self.rawValue, forKey: .type)
         
         switch self {
-        case .joinSession(_, let message): try container.encode(message, forKey: .message)
-        case .vote(_, let message): try container.encode(message, forKey: .message)
-        default:
-            break
+        case .joinSession(let uuid, let message):
+            try container.encode(uuid, forKey: .uuid)
+            try container.encode(message, forKey: .message)
+        case .vote(let uuid, let message):
+            try container.encode(uuid, forKey: .uuid)
+            try container.encode(message, forKey: .message)
+        case .leaveSession(let uuid):
+            try container.encode(uuid, forKey: .uuid)
+        case .reconnect(let uuid):
+            try container.encode(uuid, forKey: .uuid)
         }
     }
     

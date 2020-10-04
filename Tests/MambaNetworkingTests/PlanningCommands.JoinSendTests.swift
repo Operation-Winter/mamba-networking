@@ -76,32 +76,32 @@ class PlanningCommands_JoinSendTests: XCTestCase {
 fileprivate class Mocks {
     static let joinSession: PlanningCommands.JoinServerReceive = {
         let message = PlanningJoinSessionMessage(sessionCode: "000000", participantName: "Test")
-        return .joinSession(uuid: UUID(), message: message)
+        return .joinSession(uuid: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), message: message)
     }()
     
     static let vote: PlanningCommands.JoinServerReceive = {
         let message = PlanningVoteMessage(selectedCard: .coffee)
-        return .vote(uuid: UUID(), message: message)
+        return .vote(uuid: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), message: message)
     }()
     
-    static let leaveSession = PlanningCommands.JoinServerReceive.leaveSession(uuid: UUID())
-    static let reconnect = PlanningCommands.JoinServerReceive.reconnect(uuid: UUID())
+    static let leaveSession = PlanningCommands.JoinServerReceive.leaveSession(uuid: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID())
+    static let reconnect = PlanningCommands.JoinServerReceive.reconnect(uuid: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID())
 }
 
 fileprivate class Expected {
     static let joinSession = """
-        {"type":"JOIN_SESSION","message":{"participantName":"Test","sessionCode":"000000"}}
+        {"type":"JOIN_SESSION","message":{"participantName":"Test","sessionCode":"000000"},"uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
         """
     
     static let vote = """
-        {"type":"VOTE","message":{"ticketId":"x","selectedCard":"COFFEE"}}
+        {"type":"VOTE","message":{"selectedCard":"COFFEE"},"uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
         """
     
     static let leaveSession = """
-        {"type":"LEAVE_SESSION"}
+        {"type":"LEAVE_SESSION","uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
         """
     
     static let reconnect = """
-        {"type":"RECONNECT"}
+        {"type":"RECONNECT","uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
         """
 }

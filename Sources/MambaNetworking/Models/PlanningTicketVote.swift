@@ -15,7 +15,7 @@ public class PlanningTicketVote: Codable {
         selectedCard == nil
     }
     
-    init(participantId: UUID, selectedCard: PlanningCard?) {
+    public init(participantId: UUID, selectedCard: PlanningCard?) {
         self.participantId = participantId
         self.selectedCard = selectedCard
     }

@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "mamba-networking",
+    defaultLocalization: "en",
     platforms: [
         .iOS(.v14),
         .macOS(.v10_15)
@@ -20,7 +21,7 @@ let package = Package(
         .target(
             name: "MambaNetworking",
             dependencies: [],
-            resources: [.process("MambaNetworking.strings")]
+            resources: [.process("Resources")]
         ),
         .testTarget(
             name: "MambaNetworkingTests",

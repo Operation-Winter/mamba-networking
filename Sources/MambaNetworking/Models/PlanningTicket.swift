@@ -1,6 +1,6 @@
 //
 //  PlanningTicket.swift
-//  mamba
+//  MambaNetworking
 //
 //  Created by Armand Kamffer on 2020/08/07.
 //  Copyright © 2020 Armand Kamffer. All rights reserved.
@@ -19,15 +19,15 @@ public class PlanningTicket: Codable {
         self.ticketVotes = ticketVotes
     }
     
-    func removeVotes(participantId: UUID) {
+    public func removeVotes(participantId: UUID) {
         ticketVotes.removeAll { $0.participantId == participantId }
     }
     
-    func removeVotesAll() {
+    public func removeVotesAll() {
         ticketVotes.removeAll()
     }
     
-    func add(vote: PlanningTicketVote) {
+    public func add(vote: PlanningTicketVote) {
         ticketVotes.append(vote)
     }
 }

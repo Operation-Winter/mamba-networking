@@ -1,6 +1,6 @@
 //
 //  PlanningTicketVote.swift
-//  mamba
+//  MambaNetworking
 //
 //  Created by Armand Kamffer on 2020/08/13.
 //  Copyright © 2020 Armand Kamffer. All rights reserved.
@@ -15,7 +15,7 @@ public class PlanningTicketVote: Codable {
         selectedCard == nil
     }
     
-    init(participantId: UUID, selectedCard: PlanningCard?) {
+    public init(participantId: UUID, selectedCard: PlanningCard?) {
         self.participantId = participantId
         self.selectedCard = selectedCard
     }

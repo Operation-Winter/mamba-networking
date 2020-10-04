@@ -1,6 +1,6 @@
 //
 //  PlanningCard.swift
-//  mamba
+//  MambaNetworking
 //
 //  Created by Armand Kamffer on 2020/07/29.
 //  Copyright © 2020 Armand Kamffer. All rights reserved.

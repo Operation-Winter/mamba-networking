@@ -11,4 +11,9 @@ import Foundation
 public struct PlanningStartSessionMessage: Codable {
     public let sessionName: String
     public let availableCards: [PlanningCard]
+    
+    public init(sessionName: String, availableCards: [PlanningCard]) {
+        self.sessionName = sessionName
+        self.availableCards = availableCards
+    }
 }

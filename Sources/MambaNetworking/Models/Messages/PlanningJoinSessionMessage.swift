@@ -11,4 +11,9 @@ import Foundation
 public struct PlanningJoinSessionMessage: Codable {
     public let sessionCode: String
     public let participantName: String
+    
+    public init(sessionCode: String, participantName: String) {
+        self.sessionCode = sessionCode
+        self.participantName = participantName
+    }
 }

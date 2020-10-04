@@ -10,4 +10,8 @@ import Foundation
 
 public struct PlanningRemoveParticipantMessage: Codable {
     public let participantId: UUID
+    
+    public init(participantId: UUID) {
+        self.participantId = participantId
+    }
 }

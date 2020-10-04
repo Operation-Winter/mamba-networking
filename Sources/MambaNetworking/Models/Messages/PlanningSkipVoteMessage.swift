@@ -10,4 +10,8 @@ import Foundation
 
 public struct PlanningSkipVoteMessage: Codable {
     public let participantId: UUID
+    
+    public init(participantId: UUID) {
+        self.participantId = participantId
+    }
 }

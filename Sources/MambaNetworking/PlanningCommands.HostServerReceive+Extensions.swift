@@ -20,27 +20,36 @@ public extension PlanningCommands.HostServerReceive {
         let type = try container.decode(String.self, forKey: .type)
         let uuid = try container.decode(UUID.self, forKey: .uuid)
         
-        switch type {
-        case PlanningCommands.HostKey.startSession.rawValue:
+        guard let commandType = PlanningCommands.HostKey(rawValue: type) else {
+            throw DecodingError.keyNotFound(CodingKeys.message, DecodingError.Context(codingPath: [], debugDescription: "Invalid key: \(type)"))
+        }
+        switch commandType {
+        case .startSession:
             let model = try container.decode(PlanningStartSessionMessage.self, forKey: .message)
             self = .startSession(uuid: uuid, message: model)
-        case PlanningCommands.HostKey.addTicket.rawValue:
-            let model = try container.decode(PlanningAddTicketMessage.self, forKey: .message)
+        case .addTicket:
+            let model = try container.decode(PlanningTicketMessage.self, forKey: .message)
             self = .addTicket(uuid: uuid, message: model)
-        case PlanningCommands.HostKey.skipVote.rawValue:
+        case .skipVote:
             let model = try container.decode(PlanningSkipVoteMessage.self, forKey: .message)
             self = .skipVote(uuid: uuid, message: model)
-        case PlanningCommands.HostKey.removeParticipant.rawValue:
+        case .removeParticipant:
             let model = try container.decode(PlanningRemoveParticipantMessage.self, forKey: .message)
             self = .removeParticipant(uuid: uuid, message: model)
-        case PlanningCommands.HostKey.endSession.rawValue:
+        case .endSession:
             self = .endSession(uuid: uuid)
-        case PlanningCommands.HostKey.finishVoting.rawValue:
+        case .finishVoting:
             self = .finishVoting(uuid: uuid)
-        case PlanningCommands.HostKey.revote.rawValue:
+        case .revote:
             self = .revote(uuid: uuid)
-        case PlanningCommands.HostKey.reconnect.rawValue:
+        case .reconnect:
             self = .reconnect(uuid: uuid)
+        case .editTicket:
+            let model = try container.decode(PlanningTicketMessage.self, forKey: .message)
+            self = .editTicket(uuid: uuid, message: model)
+        case .addTimer:
+            let model = try container.decode(PlanningAddTimerMessage.self, forKey: .message)
+            self = .addTimer(uuid: uuid, message: model)
         default:
             throw DecodingError.keyNotFound(CodingKeys.message, DecodingError.Context(codingPath: [], debugDescription: "Invalid key: \(type)"))
         }
@@ -71,6 +80,12 @@ public extension PlanningCommands.HostServerReceive {
             try container.encode(uuid, forKey: .uuid)
         case .reconnect(let uuid):
             try container.encode(uuid, forKey: .uuid)
+        case .editTicket(let uuid, let message):
+            try container.encode(uuid, forKey: .uuid)
+            try container.encode(message, forKey: .message)
+        case .addTimer(let uuid, let message):
+            try container.encode(uuid, forKey: .uuid)
+            try container.encode(message, forKey: .message)
         }
     }
     
@@ -92,6 +107,10 @@ public extension PlanningCommands.HostServerReceive {
             return PlanningCommands.HostKey.revote.rawValue
         case .reconnect:
             return PlanningCommands.HostKey.reconnect.rawValue
+        case .editTicket:
+            return PlanningCommands.HostKey.editTicket.rawValue
+        case .addTimer:
+            return PlanningCommands.HostKey.addTimer.rawValue
         }
     }
 }

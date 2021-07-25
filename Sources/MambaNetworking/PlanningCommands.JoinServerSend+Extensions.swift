@@ -58,9 +58,9 @@ public extension PlanningCommands.JoinServerSend {
     
     var rawValue: String {
         switch self {
-        case .noneState(_): return PlanningCommands.JoinKey.noneState.rawValue
-        case .votingState(_): return PlanningCommands.JoinKey.votingState.rawValue
-        case .finishedState(_): return PlanningCommands.JoinKey.finishedState.rawValue
+        case .noneState: return PlanningCommands.JoinKey.noneState.rawValue
+        case .votingState: return PlanningCommands.JoinKey.votingState.rawValue
+        case .finishedState: return PlanningCommands.JoinKey.finishedState.rawValue
         case .invalidCommand: return PlanningCommands.JoinKey.invalidCommand.rawValue
         case .invalidSession: return PlanningCommands.JoinKey.invalidSession.rawValue
         case .removeParticipant: return PlanningCommands.JoinKey.removeParticipant.rawValue

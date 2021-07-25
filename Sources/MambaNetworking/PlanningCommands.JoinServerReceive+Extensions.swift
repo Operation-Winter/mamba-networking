@@ -20,17 +20,23 @@ public extension PlanningCommands.JoinServerReceive {
         let type = try container.decode(String.self, forKey: .type)
         let uuid = try container.decode(UUID.self, forKey: .uuid)
         
-        switch type {
-        case PlanningCommands.JoinKey.joinSession.rawValue:
+        guard let commandType = PlanningCommands.JoinKey(rawValue: type) else {
+            throw DecodingError.keyNotFound(CodingKeys.message, DecodingError.Context(codingPath: [], debugDescription: "Invalid key: \(type)"))
+        }
+        switch commandType {
+        case .joinSession:
             let model = try container.decode(PlanningJoinSessionMessage.self, forKey: .message)
             self = .joinSession(uuid: uuid, message: model)
-        case PlanningCommands.JoinKey.vote.rawValue:
+        case .vote:
             let model = try container.decode(PlanningVoteMessage.self, forKey: .message)
             self = .vote(uuid: uuid, message: model)
-        case PlanningCommands.JoinKey.leaveSession.rawValue:
+        case .leaveSession:
             self = .leaveSession(uuid: uuid)
-        case PlanningCommands.JoinKey.reconnect.rawValue:
+        case .reconnect:
             self = .reconnect(uuid: uuid)
+        case .changeName:
+            let model = try container.decode(PlanningChangeNameMessage.self, forKey: .message)
+            self = .changeName(uuid: uuid, message: model)
         default:
             throw DecodingError.keyNotFound(CodingKeys.message, DecodingError.Context(codingPath: [], debugDescription: "Invalid key: \(type)"))
         }
@@ -51,6 +57,9 @@ public extension PlanningCommands.JoinServerReceive {
             try container.encode(uuid, forKey: .uuid)
         case .reconnect(let uuid):
             try container.encode(uuid, forKey: .uuid)
+        case .changeName(let uuid, let message):
+            try container.encode(uuid, forKey: .uuid)
+            try container.encode(message, forKey: .message)
         }
     }
     
@@ -60,6 +69,7 @@ public extension PlanningCommands.JoinServerReceive {
         case .vote: return PlanningCommands.JoinKey.vote.rawValue
         case .leaveSession: return PlanningCommands.JoinKey.leaveSession.rawValue
         case .reconnect: return PlanningCommands.JoinKey.reconnect.rawValue
+        case .changeName: return PlanningCommands.JoinKey.changeName.rawValue
         }
     }
 }

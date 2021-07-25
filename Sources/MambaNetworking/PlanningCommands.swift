@@ -19,6 +19,8 @@ public enum PlanningCommands {
         case finishVoting = "FINISH_VOTING"
         case revote = "REVOTE"
         case reconnect = "RECONNECT"
+        case editTicket = "EDIT_TICKET"
+        case addTimer = "ADD_TIMER"
         
         // MARK: - Planning Host Server Send
         case noneState = "NONE_STATE"
@@ -29,13 +31,15 @@ public enum PlanningCommands {
 
     public enum HostServerReceive: Codable {
         case startSession(uuid: UUID, message: PlanningStartSessionMessage)
-        case addTicket(uuid: UUID, message: PlanningAddTicketMessage)
+        case addTicket(uuid: UUID, message: PlanningTicketMessage)
         case skipVote(uuid: UUID, message: PlanningSkipVoteMessage)
         case removeParticipant(uuid: UUID, message: PlanningRemoveParticipantMessage)
         case endSession(uuid: UUID)
         case finishVoting(uuid: UUID)
         case revote(uuid: UUID)
         case reconnect(uuid: UUID)
+        case editTicket(uuid: UUID, message: PlanningTicketMessage)
+        case addTimer(uuid: UUID, message: PlanningAddTimerMessage)
     }
     
     public enum HostServerSend: Codable {
@@ -51,6 +55,7 @@ public enum PlanningCommands {
         case vote = "VOTE"
         case leaveSession = "LEAVE_SESSION"
         case reconnect = "RECONNECT"
+        case changeName = "CHANGE_NAME"
         
         // MARK: - Planning Join Server Send
         case noneState = "NONE_STATE"
@@ -67,6 +72,7 @@ public enum PlanningCommands {
         case vote(uuid: UUID, message: PlanningVoteMessage)
         case leaveSession(uuid: UUID)
         case reconnect(uuid: UUID)
+        case changeName(uuid: UUID, message: PlanningChangeNameMessage)
     }
     
     public enum JoinServerSend: Codable {

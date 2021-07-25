@@ -1,5 +1,5 @@
 //
-//  PlanningAddTicketMessage.swift
+//  PlanningTicketMessage.swift
 //  MambaNetworking
 //
 //  Created by Armand Kamffer on 2020/08/07.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct PlanningAddTicketMessage: Codable {
+public struct PlanningTicketMessage: Codable {
     public let title: String
     public let description: String
     

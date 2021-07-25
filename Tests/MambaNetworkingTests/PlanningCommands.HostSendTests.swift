@@ -135,7 +135,7 @@ class PlanningCommands_HostSendTests: XCTestCase {
 
 fileprivate class Mocks {
     static let addTicket: PlanningCommands.HostServerReceive = {
-        let message = PlanningAddTicketMessage(title: "x", description: "Test")
+        let message = PlanningTicketMessage(title: "x", description: "Test")
         return .addTicket(uuid: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), message: message)
     }()
     

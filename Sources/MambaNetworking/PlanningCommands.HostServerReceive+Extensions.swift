@@ -50,6 +50,8 @@ public extension PlanningCommands.HostServerReceive {
         case .addTimer:
             let model = try container.decode(PlanningAddTimerMessage.self, forKey: .message)
             self = .addTimer(uuid: uuid, message: model)
+        case .cancelTimer:
+            self = .cancelTimer(uuid: uuid)
         default:
             throw DecodingError.keyNotFound(CodingKeys.message, DecodingError.Context(codingPath: [], debugDescription: "Invalid key: \(type)"))
         }
@@ -86,6 +88,8 @@ public extension PlanningCommands.HostServerReceive {
         case .addTimer(let uuid, let message):
             try container.encode(uuid, forKey: .uuid)
             try container.encode(message, forKey: .message)
+        case .cancelTimer(uuid: let uuid):
+            try container.encode(uuid, forKey: .uuid)
         }
     }
     
@@ -111,6 +115,8 @@ public extension PlanningCommands.HostServerReceive {
             return PlanningCommands.HostKey.editTicket.rawValue
         case .addTimer:
             return PlanningCommands.HostKey.addTimer.rawValue
+        case .cancelTimer:
+            return PlanningCommands.HostKey.cancelTimer.rawValue
         }
     }
 }

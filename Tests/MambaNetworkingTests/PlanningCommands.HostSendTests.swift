@@ -160,6 +160,21 @@ class PlanningCommands_HostSendTests: XCTestCase {
         // Then: The encoded value matches the expected value
         XCTAssertEqual(jsonCommand, Expected.addTimer)
     }
+    
+    func testCancelTimerCommandEncoding() {
+        // Given: a mocked command
+        let mockedCommand = Mocks.cancelTimer
+        
+        // When: Command is mapped to JSON
+        guard let data = try? JSONEncoder().encode(mockedCommand) else {
+            XCTFail("Error thrown")
+            return
+        }
+        let jsonCommand = String(decoding: data, as: UTF8.self)
+        
+        // Then: The encoded value matches the expected value
+        XCTAssertEqual(jsonCommand, Expected.cancelTimer)
+    }
 }
 
 fileprivate class Mocks {
@@ -197,6 +212,8 @@ fileprivate class Mocks {
         let message = PlanningAddTimerMessage(time: 2)
         return .addTimer(uuid: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), message: message)
     }()
+    
+    static let cancelTimer = PlanningCommands.HostServerReceive.cancelTimer(uuid: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID())
 }
 
 fileprivate class Expected {
@@ -238,5 +255,9 @@ fileprivate class Expected {
     
     static let addTimer = """
         {"type":"ADD_TIMER","message":{"time":2},"uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+        """
+    
+    static let cancelTimer = """
+        {"type":"CANCEL_TIMER","uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
         """
 }

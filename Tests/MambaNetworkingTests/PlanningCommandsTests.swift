@@ -45,6 +45,7 @@ fileprivate class Expected {
         "RECONNECT",
         "EDIT_TICKET",
         "ADD_TIMER",
+        "CANCEL_TIMER",
         "NONE_STATE",
         "VOTING_STATE",
         "FINISHED_STATE",

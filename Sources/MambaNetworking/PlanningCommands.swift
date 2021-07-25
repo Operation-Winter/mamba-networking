@@ -21,6 +21,7 @@ public enum PlanningCommands {
         case reconnect = "RECONNECT"
         case editTicket = "EDIT_TICKET"
         case addTimer = "ADD_TIMER"
+        case cancelTimer = "CANCEL_TIMER"
         
         // MARK: - Planning Host Server Send
         case noneState = "NONE_STATE"
@@ -40,6 +41,7 @@ public enum PlanningCommands {
         case reconnect(uuid: UUID)
         case editTicket(uuid: UUID, message: PlanningTicketMessage)
         case addTimer(uuid: UUID, message: PlanningAddTimerMessage)
+        case cancelTimer(uuid: UUID)
     }
     
     public enum HostServerSend: Codable {

@@ -10,7 +10,7 @@ import Foundation
 
 public class PlanningParticipant: Codable, Identifiable {
     public private(set) var participantId: UUID
-    public private(set) var name: String
+    public var name: String
     
     public init(participantId: UUID, name: String) {
         self.participantId = participantId

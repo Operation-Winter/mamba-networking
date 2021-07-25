@@ -131,6 +131,35 @@ class PlanningCommands_HostSendTests: XCTestCase {
         XCTAssertEqual(jsonCommand, Expected.revote)
     }
 
+    func testEditTicketCommandEncoding() {
+        // Given: a mocked command
+        let mockedCommand = Mocks.editTicket
+        
+        // When: Command is mapped to JSON
+        guard let data = try? JSONEncoder().encode(mockedCommand) else {
+            XCTFail("Error thrown")
+            return
+        }
+        let jsonCommand = String(decoding: data, as: UTF8.self)
+        
+        // Then: The encoded value matches the expected value
+        XCTAssertEqual(jsonCommand, Expected.editTicket)
+    }
+    
+    func testAddTimerCommandEncoding() {
+        // Given: a mocked command
+        let mockedCommand = Mocks.addTimer
+        
+        // When: Command is mapped to JSON
+        guard let data = try? JSONEncoder().encode(mockedCommand) else {
+            XCTFail("Error thrown")
+            return
+        }
+        let jsonCommand = String(decoding: data, as: UTF8.self)
+        
+        // Then: The encoded value matches the expected value
+        XCTAssertEqual(jsonCommand, Expected.addTimer)
+    }
 }
 
 fileprivate class Mocks {
@@ -158,6 +187,16 @@ fileprivate class Mocks {
     static let finishVoting = PlanningCommands.HostServerReceive.finishVoting(uuid: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID())
     static let reconnect = PlanningCommands.HostServerReceive.reconnect(uuid: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID())
     static let revote = PlanningCommands.HostServerReceive.revote(uuid: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID())
+    
+    static let editTicket: PlanningCommands.HostServerReceive = {
+        let message = PlanningTicketMessage(title: "x", description: "Test")
+        return .editTicket(uuid: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), message: message)
+    }()
+    
+    static let addTimer: PlanningCommands.HostServerReceive = {
+        let message = PlanningAddTimerMessage(time: 2)
+        return .addTimer(uuid: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), message: message)
+    }()
 }
 
 fileprivate class Expected {
@@ -191,5 +230,13 @@ fileprivate class Expected {
     
     static let revote = """
         {"type":"REVOTE","uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+        """
+    
+    static let editTicket = """
+        {"type":"EDIT_TICKET","message":{"title":"x","description":"Test"},"uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+        """
+    
+    static let addTimer = """
+        {"type":"ADD_TIMER","message":{"time":2},"uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
         """
 }

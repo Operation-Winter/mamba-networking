@@ -71,6 +71,20 @@ class PlanningCommands_JoinSendTests: XCTestCase {
         XCTAssertEqual(jsonCommand, Expected.reconnect)
     }
     
+    func testChangeNameCommandEncoding() {
+        // Given: a mocked command
+        let mockedCommand = Mocks.changeName
+        
+        // When: Command is mapped to JSON
+        guard let data = try? JSONEncoder().encode(mockedCommand) else {
+            XCTFail("Error thrown")
+            return
+        }
+        let jsonCommand = String(decoding: data, as: UTF8.self)
+        
+        // Then: The encoded value matches the expected value
+        XCTAssertEqual(jsonCommand, Expected.changeName)
+    }
 }
 
 fileprivate class Mocks {
@@ -86,6 +100,11 @@ fileprivate class Mocks {
     
     static let leaveSession = PlanningCommands.JoinServerReceive.leaveSession(uuid: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID())
     static let reconnect = PlanningCommands.JoinServerReceive.reconnect(uuid: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID())
+    
+    static let changeName: PlanningCommands.JoinServerReceive = {
+        let message = PlanningChangeNameMessage(name: "TestName")
+        return PlanningCommands.JoinServerReceive.changeName(uuid: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), message: message)
+    }()
 }
 
 fileprivate class Expected {
@@ -103,5 +122,9 @@ fileprivate class Expected {
     
     static let reconnect = """
         {"type":"RECONNECT","uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+        """
+    
+    static let changeName = """
+        {"type":"CHANGE_NAME","message":{"name":"TestName"},"uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
         """
 }

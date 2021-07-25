@@ -11,6 +11,7 @@ import Foundation
 public class PlanningTicketVote: Codable {
     public private(set) var participantId: UUID
     public private(set) var selectedCard: PlanningCard?
+    
     public var skipped: Bool {
         selectedCard == nil
     }

@@ -74,17 +74,17 @@ fileprivate class Expected {
     ]
     
     static let cardTitles = [
-        NSLocalizedString("PLANNING_CARD_ZERO_TITLE", comment: "0"),
-        NSLocalizedString("PLANNING_CARD_ONE_TITLE", comment: "1"),
-        NSLocalizedString("PLANNING_CARD_TWO_TITLE", comment: "2"),
-        NSLocalizedString("PLANNING_CARD_THREE_TITLE", comment: "3"),
-        NSLocalizedString("PLANNING_CARD_FIVE_TITLE", comment: "5"),
-        NSLocalizedString("PLANNING_CARD_EIGHT_TITLE", comment: "8"),
-        NSLocalizedString("PLANNING_CARD_THIRTEEN_TITLE", comment: "13"),
-        NSLocalizedString("PLANNING_CARD_TWENTY_TITLE", comment: "20"),
-        NSLocalizedString("PLANNING_CARD_FOURTY_TITLE", comment: "40"),
-        NSLocalizedString("PLANNING_CARD_HUNDRED_TITLE", comment: "100"),
-        NSLocalizedString("PLANNING_CARD_QUESTION_TITLE", comment: "?"),
-        NSLocalizedString("PLANNING_CARD_COFFEE_TITLE", comment: "Coffee")
+        NSLocalizedString("PLANNING_CARD_ZERO_TITLE", bundle: .module, comment: "0"),
+        NSLocalizedString("PLANNING_CARD_ONE_TITLE", bundle: .module, comment: "1"),
+        NSLocalizedString("PLANNING_CARD_TWO_TITLE", bundle: .module, comment: "2"),
+        NSLocalizedString("PLANNING_CARD_THREE_TITLE", bundle: .module, comment: "3"),
+        NSLocalizedString("PLANNING_CARD_FIVE_TITLE", bundle: .module, comment: "5"),
+        NSLocalizedString("PLANNING_CARD_EIGHT_TITLE", bundle: .module, comment: "8"),
+        NSLocalizedString("PLANNING_CARD_THIRTEEN_TITLE", bundle: .module, comment: "13"),
+        NSLocalizedString("PLANNING_CARD_TWENTY_TITLE", bundle: .module, comment: "20"),
+        NSLocalizedString("PLANNING_CARD_FOURTY_TITLE", bundle: .module, comment: "40"),
+        NSLocalizedString("PLANNING_CARD_HUNDRED_TITLE", bundle: .module, comment: "100"),
+        NSLocalizedString("PLANNING_CARD_QUESTION_TITLE", bundle: .module, comment: "?"),
+        NSLocalizedString("PLANNING_CARD_COFFEE_TITLE", bundle: .module, comment: "Coffee")
     ]
 }

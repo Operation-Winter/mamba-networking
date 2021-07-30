@@ -1,5 +1,5 @@
 //
-//  PlanningCommands_HostSendTests.swift
+//  PlanningCommands_HostServerReceiveTests_Encoding.swift
 //  mambaTests
 //
 //  Created by Armand Kamffer on 2020/08/24.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import MambaNetworking
 
-class PlanningCommands_HostSendTests: XCTestCase {
+class PlanningCommands_HostServerReceiveTests_Encoding: XCTestCase {
 
     func testAddTicketCommandEncoding() {
         // Given: a mocked command
@@ -175,6 +175,21 @@ class PlanningCommands_HostSendTests: XCTestCase {
         // Then: The encoded value matches the expected value
         XCTAssertEqual(jsonCommand, Expected.cancelTimer)
     }
+    
+    func testPreviousTicketsCommandEncoding() {
+        // Given: a mocked command
+        let mockedCommand = Mocks.previousTickets
+        
+        // When: Command is mapped to JSON
+        guard let data = try? JSONEncoder().encode(mockedCommand) else {
+            XCTFail("Error thrown")
+            return
+        }
+        let jsonCommand = String(decoding: data, as: UTF8.self)
+        
+        // Then: The encoded value matches the expected value
+        XCTAssertEqual(jsonCommand, Expected.previousTickets)
+    }
 }
 
 fileprivate class Mocks {
@@ -214,6 +229,8 @@ fileprivate class Mocks {
     }()
     
     static let cancelTimer = PlanningCommands.HostServerReceive.cancelTimer(uuid: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID())
+    
+    static let previousTickets = PlanningCommands.HostServerReceive.previousTickets(uuid: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID())
 }
 
 fileprivate class Expected {
@@ -259,5 +276,9 @@ fileprivate class Expected {
     
     static let cancelTimer = """
         {"type":"CANCEL_TIMER","uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+        """
+    
+    static let previousTickets = """
+        {"type":"PREVIOUS_TICKETS","uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
         """
 }

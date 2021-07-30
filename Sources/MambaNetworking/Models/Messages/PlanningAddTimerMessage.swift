@@ -10,4 +10,8 @@ import Foundation
 
 public struct PlanningAddTimerMessage: Codable {
     public let time: TimeInterval
+    
+    public init(time: TimeInterval) {
+        self.time = time
+    }
 }

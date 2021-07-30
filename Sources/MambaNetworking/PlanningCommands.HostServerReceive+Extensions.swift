@@ -20,7 +20,7 @@ public extension PlanningCommands.HostServerReceive {
         let type = try container.decode(String.self, forKey: .type)
         let uuid = try container.decode(UUID.self, forKey: .uuid)
         
-        guard let commandType = PlanningCommands.HostKey(rawValue: type) else {
+        guard let commandType = PlanningCommands.HostServerReceiveKey(rawValue: type) else {
             throw DecodingError.keyNotFound(CodingKeys.message, DecodingError.Context(codingPath: [], debugDescription: "Invalid key: \(type)"))
         }
         switch commandType {
@@ -52,8 +52,8 @@ public extension PlanningCommands.HostServerReceive {
             self = .addTimer(uuid: uuid, message: model)
         case .cancelTimer:
             self = .cancelTimer(uuid: uuid)
-        default:
-            throw DecodingError.keyNotFound(CodingKeys.message, DecodingError.Context(codingPath: [], debugDescription: "Invalid key: \(type)"))
+        case .previousTickets:
+            self = .previousTickets(uuid: uuid)
         }
     }
     
@@ -90,33 +90,37 @@ public extension PlanningCommands.HostServerReceive {
             try container.encode(message, forKey: .message)
         case .cancelTimer(uuid: let uuid):
             try container.encode(uuid, forKey: .uuid)
+        case .previousTickets(let uuid):
+            try container.encode(uuid, forKey: .uuid)
         }
     }
     
     var rawValue: String {
         switch self {
         case .startSession:
-            return PlanningCommands.HostKey.startSession.rawValue
+            return PlanningCommands.HostServerReceiveKey.startSession.rawValue
         case .addTicket:
-            return PlanningCommands.HostKey.addTicket.rawValue
+            return PlanningCommands.HostServerReceiveKey.addTicket.rawValue
         case .skipVote:
-            return PlanningCommands.HostKey.skipVote.rawValue
+            return PlanningCommands.HostServerReceiveKey.skipVote.rawValue
         case .removeParticipant:
-            return PlanningCommands.HostKey.removeParticipant.rawValue
+            return PlanningCommands.HostServerReceiveKey.removeParticipant.rawValue
         case .endSession:
-            return PlanningCommands.HostKey.endSession.rawValue
+            return PlanningCommands.HostServerReceiveKey.endSession.rawValue
         case .finishVoting:
-            return PlanningCommands.HostKey.finishVoting.rawValue
+            return PlanningCommands.HostServerReceiveKey.finishVoting.rawValue
         case .revote:
-            return PlanningCommands.HostKey.revote.rawValue
+            return PlanningCommands.HostServerReceiveKey.revote.rawValue
         case .reconnect:
-            return PlanningCommands.HostKey.reconnect.rawValue
+            return PlanningCommands.HostServerReceiveKey.reconnect.rawValue
         case .editTicket:
-            return PlanningCommands.HostKey.editTicket.rawValue
+            return PlanningCommands.HostServerReceiveKey.editTicket.rawValue
         case .addTimer:
-            return PlanningCommands.HostKey.addTimer.rawValue
+            return PlanningCommands.HostServerReceiveKey.addTimer.rawValue
         case .cancelTimer:
-            return PlanningCommands.HostKey.cancelTimer.rawValue
+            return PlanningCommands.HostServerReceiveKey.cancelTimer.rawValue
+        case .previousTickets:
+            return PlanningCommands.HostServerReceiveKey.previousTickets.rawValue
         }
     }
 }

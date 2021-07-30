@@ -9,8 +9,8 @@
 import Foundation
 
 public enum PlanningCommands {
-    public enum HostKey: String, CaseIterable {
-        // MARK: - Planning Host Server Receive
+    // MARK: - Planning Host Server Receive
+    public enum HostServerReceiveKey: String, CaseIterable {
         case startSession = "START_SESSION"
         case addTicket = "ADD_TICKET"
         case skipVote = "SKIP_VOTE"
@@ -22,12 +22,7 @@ public enum PlanningCommands {
         case editTicket = "EDIT_TICKET"
         case addTimer = "ADD_TIMER"
         case cancelTimer = "CANCEL_TIMER"
-        
-        // MARK: - Planning Host Server Send
-        case noneState = "NONE_STATE"
-        case votingState = "VOTING_STATE"
-        case finishedState = "FINISHED_STATE"
-        case invalidCommand = "INVALID_COMMAND"
+        case previousTickets = "PREVIOUS_TICKETS"
     }
 
     public enum HostServerReceive: Codable {
@@ -42,6 +37,16 @@ public enum PlanningCommands {
         case editTicket(uuid: UUID, message: PlanningTicketMessage)
         case addTimer(uuid: UUID, message: PlanningAddTimerMessage)
         case cancelTimer(uuid: UUID)
+        case previousTickets(uuid: UUID)
+    }
+    
+    // MARK: - Planning Host Server Send
+    public enum HostServerSendKey: String, CaseIterable {
+        case noneState = "NONE_STATE"
+        case votingState = "VOTING_STATE"
+        case finishedState = "FINISHED_STATE"
+        case invalidCommand = "INVALID_COMMAND"
+        case previousTickets = "PREVIOUS_TICKETS"
     }
     
     public enum HostServerSend: Codable {
@@ -49,24 +54,16 @@ public enum PlanningCommands {
         case votingState(message: PlanningSessionStateMessage)
         case finishedState(message: PlanningSessionStateMessage)
         case invalidCommand(message: PlanningInvalidCommandMessage)
+        case previousTickets(message: PlanningPreviousTicketsMessage)
     }
     
-    public enum JoinKey: String, CaseIterable {
-        // MARK: - Planning Join Server Receive
+    // MARK: - Planning Join Server Receive
+    public enum JoinServerReceiveKey: String, CaseIterable {
         case joinSession = "JOIN_SESSION"
         case vote = "VOTE"
         case leaveSession = "LEAVE_SESSION"
         case reconnect = "RECONNECT"
         case changeName = "CHANGE_NAME"
-        
-        // MARK: - Planning Join Server Send
-        case noneState = "NONE_STATE"
-        case votingState = "VOTING_STATE"
-        case finishedState = "FINISHED_STATE"
-        case invalidCommand = "INVALID_COMMAND"
-        case invalidSession = "INVALID_SESSION"
-        case removeParticipant = "REMOVE_PARTICIPANT"
-        case endSession = "END_SESSION"
     }
     
     public enum JoinServerReceive: Codable {
@@ -75,6 +72,17 @@ public enum PlanningCommands {
         case leaveSession(uuid: UUID)
         case reconnect(uuid: UUID)
         case changeName(uuid: UUID, message: PlanningChangeNameMessage)
+    }
+    
+    // MARK: - Planning Join Server Send
+    public enum JoinServerSendKey: String, CaseIterable {
+        case noneState = "NONE_STATE"
+        case votingState = "VOTING_STATE"
+        case finishedState = "FINISHED_STATE"
+        case invalidCommand = "INVALID_COMMAND"
+        case invalidSession = "INVALID_SESSION"
+        case removeParticipant = "REMOVE_PARTICIPANT"
+        case endSession = "END_SESSION"
     }
     
     public enum JoinServerSend: Codable {

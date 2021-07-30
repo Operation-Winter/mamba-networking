@@ -11,30 +11,58 @@ import XCTest
 
 class PlanningCommandsTests: XCTestCase {
 
-    func testHostKeyRawValues() {
+    func testHostServerSendKeyRawValues() {
         // When: Host command keys are mapped
-        let hostKeys = PlanningCommands.HostKey.allCases
+        let hostKeys = PlanningCommands.HostServerSendKey.allCases
         
         // Then: the keys match expected values
         for (index, key) in hostKeys.enumerated() {
-            XCTAssertEqual(key.rawValue, Expected.hostKeys.element(at: index))
+            XCTAssertEqual(key.rawValue, Expected.hostServerSendKey.element(at: index))
         }
     }
     
-    func testJoinKeyRawValues() {
+    func testHostServerReceiveKeyRawValues() {
+        // When: Host command keys are mapped
+        let hostKeys = PlanningCommands.HostServerReceiveKey.allCases
+        
+        // Then: the keys match expected values
+        for (index, key) in hostKeys.enumerated() {
+            XCTAssertEqual(key.rawValue, Expected.hostServerReceiveKey.element(at: index))
+        }
+    }
+    
+    func testJoinServerSendKeyRawValues() {
         // When: Join command keys are mapped
-        let joinKeys = PlanningCommands.JoinKey.allCases
+        let joinKeys = PlanningCommands.JoinServerSendKey.allCases
         
         // Then: the keys match expected values
         for (index, key) in joinKeys.enumerated() {
-            XCTAssertEqual(key.rawValue, Expected.joinKeys.element(at: index))
+            XCTAssertEqual(key.rawValue, Expected.joinServerSendKey.element(at: index))
+        }
+    }
+    
+    func testJoinServerReceiveKeyRawValues() {
+        // When: Join command keys are mapped
+        let joinKeys = PlanningCommands.JoinServerReceiveKey.allCases
+        
+        // Then: the keys match expected values
+        for (index, key) in joinKeys.enumerated() {
+            XCTAssertEqual(key.rawValue, Expected.joinServerReceiveKey.element(at: index))
         }
     }
 
 }
 
 fileprivate class Expected {
-    static let hostKeys = [
+    static let hostServerSendKey = [
+        "NONE_STATE",
+        "VOTING_STATE",
+        "FINISHED_STATE",
+        "INVALID_COMMAND",
+        "PREVIOUS_TICKETS"
+    ]
+    
+    static let hostServerReceiveKey = [
         "START_SESSION",
         "ADD_TICKET",
         "SKIP_VOTE",
@@ -46,18 +74,10 @@ fileprivate class Expected {
         "EDIT_TICKET",
         "ADD_TIMER",
         "CANCEL_TIMER",
-        "NONE_STATE",
-        "VOTING_STATE",
-        "FINISHED_STATE",
-        "INVALID_COMMAND"
+        "PREVIOUS_TICKETS"
     ]
     
-    static let joinKeys = [
-        "JOIN_SESSION",
-        "VOTE",
-        "LEAVE_SESSION",
-        "RECONNECT",
-        "CHANGE_NAME",
+    static let joinServerSendKey = [
         "NONE_STATE",
         "VOTING_STATE",
         "FINISHED_STATE",
@@ -65,5 +85,13 @@ fileprivate class Expected {
         "INVALID_SESSION",
         "REMOVE_PARTICIPANT",
         "END_SESSION"
+    ]
+    
+    static let joinServerReceiveKey = [
+        "JOIN_SESSION",
+        "VOTE",
+        "LEAVE_SESSION",
+        "RECONNECT",
+        "CHANGE_NAME"
     ]
 }

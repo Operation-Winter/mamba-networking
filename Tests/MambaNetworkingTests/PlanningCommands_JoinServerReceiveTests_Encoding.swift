@@ -1,5 +1,5 @@
 //
-//  PlanningCommands_JoinSendTests.swift
+//  PlanningCommands_JoinServerReceiveTests_Encoding.swift
 //  mambaTests
 //
 //  Created by Armand Kamffer on 2020/08/24.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import MambaNetworking
 
-class PlanningCommands_JoinSendTests: XCTestCase {
+class PlanningCommands_JoinServerReceiveTests_Encoding: XCTestCase {
 
     func testJoinSessionCommandEncoding() {
         // Given: a mocked command

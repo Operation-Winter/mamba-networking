@@ -18,21 +18,25 @@ public extension PlanningCommands.HostServerSend {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let type = try container.decode(String.self, forKey: .type)
         
-        switch type {
-        case PlanningCommands.HostKey.noneState.rawValue:
+        guard let commandType = PlanningCommands.HostServerSendKey(rawValue: type) else {
+            throw DecodingError.keyNotFound(CodingKeys.message, DecodingError.Context(codingPath: [], debugDescription: "Invalid key: \(type)"))
+        }
+        switch commandType {
+        case .noneState:
             let model = try container.decode(PlanningSessionStateMessage.self, forKey: .message)
             self = .noneState(message: model)
-        case PlanningCommands.HostKey.votingState.rawValue:
+        case .votingState:
             let model = try container.decode(PlanningSessionStateMessage.self, forKey: .message)
             self = .votingState(message: model)
-        case PlanningCommands.HostKey.finishedState.rawValue:
+        case .finishedState:
             let model = try container.decode(PlanningSessionStateMessage.self, forKey: .message)
             self = .finishedState(message: model)
-        case PlanningCommands.HostKey.invalidCommand.rawValue:
+        case .invalidCommand:
             let model = try container.decode(PlanningInvalidCommandMessage.self, forKey: .message)
             self = .invalidCommand(message: model)
-        default:
-            throw DecodingError.keyNotFound(CodingKeys.message, DecodingError.Context(codingPath: [], debugDescription: "Invalid key: \(type)"))
+        case .previousTickets:
+            let model = try container.decode(PlanningPreviousTicketsMessage.self, forKey: .message)
+            self = .previousTickets(message: model)
         }
     }
     
@@ -45,15 +49,22 @@ public extension PlanningCommands.HostServerSend {
         case .votingState(let message): try container.encode(message, forKey: .message)
         case .finishedState(let message): try container.encode(message, forKey: .message)
         case .invalidCommand(let message): try container.encode(message, forKey: .message)
+        case .previousTickets(let message): try container.encode(message, forKey: .message)
         }
     }
     
     var rawValue: String {
         switch self {
-        case .noneState: return PlanningCommands.HostKey.noneState.rawValue
-        case .votingState: return PlanningCommands.HostKey.votingState.rawValue
-        case .finishedState: return PlanningCommands.HostKey.finishedState.rawValue
-        case .invalidCommand: return PlanningCommands.HostKey.invalidCommand.rawValue
+        case .noneState:
+            return PlanningCommands.HostServerSendKey.noneState.rawValue
+        case .votingState:
+            return PlanningCommands.HostServerSendKey.votingState.rawValue
+        case .finishedState:
+            return PlanningCommands.HostServerSendKey.finishedState.rawValue
+        case .invalidCommand:
+            return PlanningCommands.HostServerSendKey.invalidCommand.rawValue
+        case .previousTickets:
+            return PlanningCommands.HostServerSendKey.previousTickets.rawValue
         }
     }
 }

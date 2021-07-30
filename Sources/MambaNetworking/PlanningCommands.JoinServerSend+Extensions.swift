@@ -18,27 +18,28 @@ public extension PlanningCommands.JoinServerSend {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let type = try container.decode(String.self, forKey: .type)
         
-        switch type {
-        case PlanningCommands.JoinKey.noneState.rawValue:
+        guard let commandType = PlanningCommands.JoinServerSendKey(rawValue: type) else {
+            throw DecodingError.keyNotFound(CodingKeys.message, DecodingError.Context(codingPath: [], debugDescription: "Invalid key: \(type)"))
+        }
+        switch commandType {
+        case .noneState:
             let model = try container.decode(PlanningSessionStateMessage.self, forKey: .message)
             self = .noneState(message: model)
-        case PlanningCommands.JoinKey.votingState.rawValue:
+        case .votingState:
             let model = try container.decode(PlanningSessionStateMessage.self, forKey: .message)
             self = .votingState(message: model)
-        case PlanningCommands.JoinKey.finishedState.rawValue:
+        case .finishedState:
             let model = try container.decode(PlanningSessionStateMessage.self, forKey: .message)
             self = .finishedState(message: model)
-        case PlanningCommands.JoinKey.invalidCommand.rawValue:
+        case .invalidCommand:
             let model = try container.decode(PlanningInvalidCommandMessage.self, forKey: .message)
             self = .invalidCommand(message: model)
-        case PlanningCommands.JoinKey.invalidSession.rawValue:
+        case .invalidSession:
             self = .invalidSession
-        case PlanningCommands.JoinKey.removeParticipant.rawValue:
+        case .removeParticipant:
             self = .removeParticipant
-        case PlanningCommands.JoinKey.endSession.rawValue:
+        case .endSession:
             self = .endSession
-        default:
-            throw DecodingError.keyNotFound(CodingKeys.message, DecodingError.Context(codingPath: [], debugDescription: "Invalid key: \(type)"))
         }
     }
     
@@ -51,20 +52,28 @@ public extension PlanningCommands.JoinServerSend {
         case .votingState(let message): try container.encode(message, forKey: .message)
         case .finishedState(let message): try container.encode(message, forKey: .message)
         case .invalidCommand(let message): try container.encode(message, forKey: .message)
-        default:
-            break
+        case .invalidSession: break
+        case .removeParticipant: break
+        case .endSession: break
         }
     }
     
     var rawValue: String {
         switch self {
-        case .noneState: return PlanningCommands.JoinKey.noneState.rawValue
-        case .votingState: return PlanningCommands.JoinKey.votingState.rawValue
-        case .finishedState: return PlanningCommands.JoinKey.finishedState.rawValue
-        case .invalidCommand: return PlanningCommands.JoinKey.invalidCommand.rawValue
-        case .invalidSession: return PlanningCommands.JoinKey.invalidSession.rawValue
-        case .removeParticipant: return PlanningCommands.JoinKey.removeParticipant.rawValue
-        case .endSession: return PlanningCommands.JoinKey.endSession.rawValue
+        case .noneState:
+            return PlanningCommands.JoinServerSendKey.noneState.rawValue
+        case .votingState:
+            return PlanningCommands.JoinServerSendKey.votingState.rawValue
+        case .finishedState:
+            return PlanningCommands.JoinServerSendKey.finishedState.rawValue
+        case .invalidCommand:
+            return PlanningCommands.JoinServerSendKey.invalidCommand.rawValue
+        case .invalidSession:
+            return PlanningCommands.JoinServerSendKey.invalidSession.rawValue
+        case .removeParticipant:
+            return PlanningCommands.JoinServerSendKey.removeParticipant.rawValue
+        case .endSession:
+            return PlanningCommands.JoinServerSendKey.endSession.rawValue
         }
     }
 }

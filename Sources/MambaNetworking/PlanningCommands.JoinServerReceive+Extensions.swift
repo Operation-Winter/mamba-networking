@@ -20,7 +20,7 @@ public extension PlanningCommands.JoinServerReceive {
         let type = try container.decode(String.self, forKey: .type)
         let uuid = try container.decode(UUID.self, forKey: .uuid)
         
-        guard let commandType = PlanningCommands.JoinKey(rawValue: type) else {
+        guard let commandType = PlanningCommands.JoinServerReceiveKey(rawValue: type) else {
             throw DecodingError.keyNotFound(CodingKeys.message, DecodingError.Context(codingPath: [], debugDescription: "Invalid key: \(type)"))
         }
         switch commandType {
@@ -37,8 +37,6 @@ public extension PlanningCommands.JoinServerReceive {
         case .changeName:
             let model = try container.decode(PlanningChangeNameMessage.self, forKey: .message)
             self = .changeName(uuid: uuid, message: model)
-        default:
-            throw DecodingError.keyNotFound(CodingKeys.message, DecodingError.Context(codingPath: [], debugDescription: "Invalid key: \(type)"))
         }
     }
     
@@ -65,11 +63,16 @@ public extension PlanningCommands.JoinServerReceive {
     
     var rawValue: String {
         switch self {
-        case .joinSession: return PlanningCommands.JoinKey.joinSession.rawValue
-        case .vote: return PlanningCommands.JoinKey.vote.rawValue
-        case .leaveSession: return PlanningCommands.JoinKey.leaveSession.rawValue
-        case .reconnect: return PlanningCommands.JoinKey.reconnect.rawValue
-        case .changeName: return PlanningCommands.JoinKey.changeName.rawValue
+        case .joinSession:
+            return PlanningCommands.JoinServerReceiveKey.joinSession.rawValue
+        case .vote:
+            return PlanningCommands.JoinServerReceiveKey.vote.rawValue
+        case .leaveSession:
+            return PlanningCommands.JoinServerReceiveKey.leaveSession.rawValue
+        case .reconnect:
+            return PlanningCommands.JoinServerReceiveKey.reconnect.rawValue
+        case .changeName:
+            return PlanningCommands.JoinServerReceiveKey.changeName.rawValue
         }
     }
 }

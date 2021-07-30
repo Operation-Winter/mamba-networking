@@ -1,5 +1,5 @@
 //
-//  PlanningCommands_JoinReceiveTests.swift
+//  PlanningCommands_JoinServerSendTests_Decoding.swift
 //  mambaTests
 //
 //  Created by Armand Kamffer on 2020/08/24.
@@ -9,7 +9,7 @@
 import XCTest 
 @testable import MambaNetworking
 
-class PlanningCommands_JoinReceiveTests: XCTestCase {
+class PlanningCommands_JoinServerSendTests_Decoding: XCTestCase {
     
     func testNoneStateCommandDecoding() {
         // Given: mocked json

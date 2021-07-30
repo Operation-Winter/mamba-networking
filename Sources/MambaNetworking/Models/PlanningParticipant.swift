@@ -11,9 +11,11 @@ import Foundation
 public class PlanningParticipant: Codable, Identifiable {
     public private(set) var participantId: UUID
     public var name: String
+    public var connected: Bool
     
-    public init(participantId: UUID, name: String) {
+    public init(participantId: UUID, name: String, connected: Bool) {
         self.participantId = participantId
         self.name = name
+        self.connected = connected
     }
 }

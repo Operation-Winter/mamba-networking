@@ -140,7 +140,7 @@ fileprivate class Mocks {
             "sessionName": "Test",
             "availableCards": ["COFFEE"],
             "participants": [
-                {"participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "name": "Test" }
+                {"participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "name": "Test", "connected": false }
             ],
             "ticket": {
                 "title": "x",
@@ -157,7 +157,7 @@ fileprivate class Mocks {
         "type": "VOTING_STATE",
         "message": {
             "sessionCode": "000000", "sessionName": "Test", "availableCards": ["COFFEE"],
-            "participants": [{ "participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "name": "Test" }], "ticket": {
+            "participants": [{ "participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "name": "Test", "connected": false }], "ticket": {
                 "title": "x", "description":"Test", "ticketVotes": [{"participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "selectedCard": "COFFEE"}]
             }
         },
@@ -170,7 +170,7 @@ fileprivate class Mocks {
         "type": "FINISHED_STATE",
         "message": {
             "sessionCode": "000000", "sessionName": "Test", "availableCards": ["COFFEE"],
-            "participants": [{ "participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "name": "Test" }], "ticket": {
+            "participants": [{ "participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "name": "Test", "connected": false }], "ticket": {
                 "title": "x", "description":"Test", "ticketVotes": [{"participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "selectedCard": "COFFEE"}]
             }
         },
@@ -191,7 +191,8 @@ fileprivate class Expected {
                                            sessionName: "Test",
                                            availableCards: [.coffee],
                                            participants: [
-                                            PlanningParticipant(participantId: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), name: "Test")
+                                            PlanningParticipant(participantId: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), name: "Test",
+                                                                connected: false)
                                            ], ticket: planningTicket,
                                            timeLeft: 2)
     }()

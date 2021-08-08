@@ -10,10 +10,12 @@ import Foundation
 
 public struct PlanningStartSessionMessage: Codable {
     public let sessionName: String
+    public let autoCompleteVoting: Bool
     public let availableCards: [PlanningCard]
     
-    public init(sessionName: String, availableCards: [PlanningCard]) {
+    public init(sessionName: String, autoCompleteVoting: Bool, availableCards: [PlanningCard]) {
         self.sessionName = sessionName
+        self.autoCompleteVoting = autoCompleteVoting
         self.availableCards = availableCards
     }
 }

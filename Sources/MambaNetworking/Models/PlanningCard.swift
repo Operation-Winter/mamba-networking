@@ -67,4 +67,21 @@ public enum PlanningCard: String, CaseIterable, Codable {
             return NSLocalizedString("PLANNING_CARD_COFFEE_TITLE", bundle: .module, comment: "Coffee")
         }
     }
+    
+    public var sortOrder: Int {
+        switch self {
+        case .zero: return 0
+        case .one: return 1
+        case .two: return 2
+        case .three: return 3
+        case .five: return 4
+        case .eight: return 5
+        case .thirteen: return 6
+        case .twenty: return 7
+        case .fourty: return 8
+        case .hundred: return 9
+        case .question: return 10
+        case .coffee: return 11
+        }
+    }
 }

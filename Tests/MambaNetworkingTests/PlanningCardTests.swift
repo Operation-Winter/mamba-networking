@@ -54,8 +54,7 @@ fileprivate class Expected {
         "TWENTY",
         "FOURTY",
         "HUNDRED",
-        "QUESTION",
-        "COFFEE"
+        "QUESTION"
     ]
     
     static let cardImageNames = [
@@ -69,8 +68,7 @@ fileprivate class Expected {
         "PlanningCardTwenty",
         "PlanningCardFourty",
         "PlanningCardHundred",
-        "PlanningCardQuestion",
-        "PlanningCardCoffee"
+        "PlanningCardQuestion"
     ]
     
     static let cardTitles = [
@@ -84,7 +82,6 @@ fileprivate class Expected {
         NSLocalizedString("PLANNING_CARD_TWENTY_TITLE", bundle: .module, comment: "20"),
         NSLocalizedString("PLANNING_CARD_FOURTY_TITLE", bundle: .module, comment: "40"),
         NSLocalizedString("PLANNING_CARD_HUNDRED_TITLE", bundle: .module, comment: "100"),
-        NSLocalizedString("PLANNING_CARD_QUESTION_TITLE", bundle: .module, comment: "?"),
-        NSLocalizedString("PLANNING_CARD_COFFEE_TITLE", bundle: .module, comment: "Coffee")
+        NSLocalizedString("PLANNING_CARD_QUESTION_TITLE", bundle: .module, comment: "?")
     ]
 }

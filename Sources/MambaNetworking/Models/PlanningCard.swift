@@ -20,7 +20,6 @@ public enum PlanningCard: String, CaseIterable, Codable {
     case fourty = "FOURTY"
     case hundred = "HUNDRED"
     case question = "QUESTION"
-    case coffee = "COFFEE"
     
     public var imageName: String {
         switch self {
@@ -35,7 +34,6 @@ public enum PlanningCard: String, CaseIterable, Codable {
         case .fourty: return "PlanningCardFourty"
         case .hundred: return "PlanningCardHundred"
         case .question: return "PlanningCardQuestion"
-        case .coffee: return "PlanningCardCoffee"
         }
     }
     
@@ -63,8 +61,6 @@ public enum PlanningCard: String, CaseIterable, Codable {
             return NSLocalizedString("PLANNING_CARD_HUNDRED_TITLE", bundle: .module, comment: "100")
         case .question:
             return NSLocalizedString("PLANNING_CARD_QUESTION_TITLE", bundle: .module, comment: "?")
-        case .coffee:
-            return NSLocalizedString("PLANNING_CARD_COFFEE_TITLE", bundle: .module, comment: "Coffee")
         }
     }
     
@@ -81,7 +77,6 @@ public enum PlanningCard: String, CaseIterable, Codable {
         case .fourty: return 8
         case .hundred: return 9
         case .question: return 10
-        case .coffee: return 11
         }
     }
 }

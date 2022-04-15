@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Test mamba-networking",
+            "program": "/Applications/Xcode-13.3.0.app/Contents/Developer/usr/bin/xctest",
+            "args": [
+                ".build/debug/mamba-networkingPackageTests.xctest"
+            ],
+            "cwd": "${workspaceFolder:mamba-networking}",
+            "preLaunchTask": "swift: Build All"
+        }
+    ]
+}

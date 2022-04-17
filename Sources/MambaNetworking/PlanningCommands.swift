@@ -98,4 +98,38 @@ public enum PlanningCommands {
         case endSession
         case sessionIdleTimeout
     }
+    
+    // MARK: - Planning Spectator Server Receive
+    public enum SpectatorServerReceiveKey: String, CaseIterable {
+        case joinSession = "JOIN_SESSION"
+        case leaveSession = "LEAVE_SESSION"
+        case reconnect = "RECONNECT"
+    }
+    
+    public enum SpectatorServerReceive: Codable {
+        case joinSession(uuid: UUID, message: PlanningSpectateSessionMessage)
+        case leaveSession(uuid: UUID)
+        case reconnect(uuid: UUID)
+    }
+    
+    // MARK: - Planning Spectator Server Send
+    public enum SpectatorServerSendKey: String, CaseIterable {
+        case noneState = "NONE_STATE"
+        case votingState = "VOTING_STATE"
+        case finishedState = "FINISHED_STATE"
+        case invalidCommand = "INVALID_COMMAND"
+        case invalidSession = "INVALID_SESSION"
+        case endSession = "END_SESSION"
+        case sessionIdleTimeout = "SESSION_IDLE_TIMEOUT"
+    }
+    
+    public enum SpectatorServerSend: Codable {
+        case noneState(message: PlanningSessionStateMessage)
+        case votingState(message: PlanningSessionStateMessage)
+        case finishedState(message: PlanningSessionStateMessage)
+        case invalidCommand(message: PlanningInvalidCommandMessage)
+        case invalidSession
+        case endSession
+        case sessionIdleTimeout
+    }
 }

@@ -203,7 +203,9 @@ fileprivate class Mocks {
                 "title": "x",
                 "description":"Test",
                 "ticketVotes": [{"participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "selectedCard": "QUESTION"}]
-            }
+            },
+            "tags": ["iOS"],
+            "password": "password"
         },
         "uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"
     }
@@ -216,7 +218,9 @@ fileprivate class Mocks {
             "sessionCode": "000000", "sessionName": "Test", "availableCards": ["QUESTION"],
             "participants": [{ "participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "name": "Test", "connected": false }], "ticket": {
                 "title": "x", "description":"Test", "ticketVotes": [{"participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "selectedCard": "QUESTION"}]
-            }
+            },
+            "tags": ["iOS"],
+            "password": "password"
         },
         "uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"
     }
@@ -229,7 +233,9 @@ fileprivate class Mocks {
             "sessionCode": "000000", "sessionName": "Test", "availableCards": ["QUESTION"],
             "participants": [{ "participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "name": "Test", "connected": false }], "ticket": {
                 "title": "x", "description":"Test", "ticketVotes": [{"participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "selectedCard": "QUESTION"}]
-            }
+            },
+            "tags": ["iOS"],
+            "password": "password"
         },
         "uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"
     }
@@ -260,7 +266,7 @@ fileprivate class Expected {
     static let stateMessage: PlanningSessionStateMessage = {
         let planningTicket = PlanningTicket(title: "x", description: "Test", ticketVotes: [PlanningTicketVote(participantId: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), selectedCard: .question)])
         
-        return PlanningSessionStateMessage(sessionCode: "000000", sessionName: "Test", availableCards: [.question], participants: [PlanningParticipant(participantId: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), name: "Test", connected: false)], ticket: planningTicket, timeLeft: 2)
+        return PlanningSessionStateMessage(sessionCode: "000000", sessionName: "Test", availableCards: [.question], participants: [PlanningParticipant(participantId: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), name: "Test", connected: false)], ticket: planningTicket, timeLeft: 2, tags: ["iOS"])
     }()
     
     static let invalidCommandMessage = PlanningInvalidCommandMessage(code: "0", description: "Test")

@@ -12,10 +12,18 @@ public struct PlanningStartSessionMessage: Codable {
     public let sessionName: String
     public let autoCompleteVoting: Bool
     public let availableCards: [PlanningCard]
+    public let password: String?
+    public let tags: Set<String>
     
-    public init(sessionName: String, autoCompleteVoting: Bool, availableCards: [PlanningCard]) {
+    public init(sessionName: String,
+                autoCompleteVoting: Bool,
+                availableCards: [PlanningCard],
+                password: String?,
+                tags: Set<String>) {
         self.sessionName = sessionName
         self.autoCompleteVoting = autoCompleteVoting
         self.availableCards = availableCards
+        self.password = password
+        self.tags = tags
     }
 }

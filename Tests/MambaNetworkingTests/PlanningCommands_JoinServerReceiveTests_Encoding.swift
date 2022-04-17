@@ -89,7 +89,7 @@ class PlanningCommands_JoinServerReceiveTests_Encoding: XCTestCase {
 
 fileprivate class Mocks {
     static let joinSession: PlanningCommands.JoinServerReceive = {
-        let message = PlanningJoinSessionMessage(sessionCode: "000000", participantName: "Test")
+        let message = PlanningJoinSessionMessage(sessionCode: "000000", participantName: "Test", password: "password")
         return .joinSession(uuid: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), message: message)
     }()
     
@@ -109,7 +109,7 @@ fileprivate class Mocks {
 
 fileprivate class Expected {
     static let joinSession = """
-        {"type":"JOIN_SESSION","message":{"participantName":"Test","sessionCode":"000000"},"uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+        {"type":"JOIN_SESSION","message":{"participantName":"Test","password":"password","sessionCode":"000000"},"uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
         """
     
     static let vote = """

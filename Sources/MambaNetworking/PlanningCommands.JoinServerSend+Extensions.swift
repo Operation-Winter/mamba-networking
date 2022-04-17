@@ -42,6 +42,12 @@ public extension PlanningCommands.JoinServerSend {
             self = .endSession
         case .sessionIdleTimeout:
             self = .sessionIdleTimeout
+        case .coffeeVoting:
+            let model = try container.decode(PlanningSessionStateMessage.self, forKey: .message)
+            self = .coffeeVoting(message: model)
+        case .coffeeVotingFinished:
+            let model = try container.decode(PlanningSessionStateMessage.self, forKey: .message)
+            self = .coffeeVotingFinished(message: model)
         }
     }
     
@@ -58,6 +64,8 @@ public extension PlanningCommands.JoinServerSend {
         case .removeParticipant: break
         case .endSession: break
         case .sessionIdleTimeout: break
+        case .coffeeVoting( let message): try container.encode(message, forKey: .message)
+        case .coffeeVotingFinished(let message): try container.encode(message, forKey: .message)
         }
     }
     
@@ -79,6 +87,10 @@ public extension PlanningCommands.JoinServerSend {
             return PlanningCommands.JoinServerSendKey.endSession.rawValue
         case .sessionIdleTimeout:
             return PlanningCommands.JoinServerSendKey.sessionIdleTimeout.rawValue
+        case .coffeeVoting:
+            return PlanningCommands.JoinServerSendKey.coffeeVoting.rawValue
+        case .coffeeVotingFinished:
+            return PlanningCommands.JoinServerSendKey.coffeeVotingFinished.rawValue
         }
     }
 }

@@ -39,6 +39,12 @@ public extension PlanningCommands.HostServerSend {
             self = .previousTickets(message: model)
         case .sessionIdleTimeout:
             self = .sessionIdleTimeout
+        case .coffeeVoting:
+            let model = try container.decode(PlanningSessionStateMessage.self, forKey: .message)
+            self = .coffeeVoting(message: model)
+        case .coffeeVotingFinished:
+            let model = try container.decode(PlanningSessionStateMessage.self, forKey: .message)
+            self = .coffeeVotingFinished(message: model)
         }
     }
     
@@ -53,6 +59,8 @@ public extension PlanningCommands.HostServerSend {
         case .invalidCommand(let message): try container.encode(message, forKey: .message)
         case .previousTickets(let message): try container.encode(message, forKey: .message)
         case .sessionIdleTimeout: break
+        case .coffeeVoting(let message): try container.encode(message, forKey: .message)
+        case .coffeeVotingFinished(let message): try container.encode(message, forKey: .message)
         }
     }
     
@@ -70,6 +78,10 @@ public extension PlanningCommands.HostServerSend {
             return PlanningCommands.HostServerSendKey.previousTickets.rawValue
         case .sessionIdleTimeout:
             return PlanningCommands.HostServerSendKey.sessionIdleTimeout.rawValue
+        case .coffeeVoting:
+            return PlanningCommands.HostServerSendKey.coffeeVoting.rawValue
+        case .coffeeVotingFinished:
+            return PlanningCommands.HostServerSendKey.coffeeVotingFinished.rawValue
         }
     }
 }

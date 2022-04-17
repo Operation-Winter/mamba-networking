@@ -40,6 +40,12 @@ public extension PlanningCommands.SpectatorServerSend {
             self = .invalidSession
         case .endSession:
             self = .endSession
+        case .coffeeVoting:
+            let model = try container.decode(PlanningSessionStateMessage.self, forKey: .message)
+            self = .coffeeVoting(message: model)
+        case .coffeeVotingFinished:
+            let model = try container.decode(PlanningSessionStateMessage.self, forKey: .message)
+            self = .coffeeVotingFinished(message: model)
         }
     }
     
@@ -55,6 +61,8 @@ public extension PlanningCommands.SpectatorServerSend {
         case .sessionIdleTimeout: break
         case .invalidSession: break
         case .endSession: break
+        case .coffeeVoting(let message): try container.encode(message, forKey: .message)
+        case .coffeeVotingFinished(let message): try container.encode(message, forKey: .message)
         }
     }
     
@@ -74,6 +82,10 @@ public extension PlanningCommands.SpectatorServerSend {
             return PlanningCommands.SpectatorServerSendKey.invalidSession.rawValue
         case .endSession:
             return PlanningCommands.SpectatorServerSendKey.endSession.rawValue
+        case .coffeeVoting:
+            return PlanningCommands.SpectatorServerSendKey.coffeeVoting.rawValue
+        case .coffeeVotingFinished:
+            return PlanningCommands.SpectatorServerSendKey.coffeeVotingFinished.rawValue
         }
     }
 }

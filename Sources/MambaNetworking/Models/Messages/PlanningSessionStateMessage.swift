@@ -16,6 +16,9 @@ public struct PlanningSessionStateMessage: Codable {
     public let ticket: PlanningTicket?
     public let timeLeft: Int?
     public let tags: Set<String>
+    public let spectatorCount: Int
+    public let coffeeRequestCount: Int
+    public let coffeeVotes: [PlanningCoffeeVote]?
     
     public init(sessionCode: String,
                 sessionName: String,
@@ -23,7 +26,10 @@ public struct PlanningSessionStateMessage: Codable {
                 participants: [PlanningParticipant],
                 ticket: PlanningTicket?,
                 timeLeft: Int?,
-                tags: Set<String>) {
+                tags: Set<String>,
+                spectatorCount: Int,
+                coffeeRequestCount: Int,
+                coffeeVotes: [PlanningCoffeeVote]?) {
         self.sessionCode = sessionCode
         self.sessionName = sessionName
         self.availableCards = availableCards
@@ -31,5 +37,8 @@ public struct PlanningSessionStateMessage: Codable {
         self.ticket = ticket
         self.timeLeft = timeLeft
         self.tags = tags
+        self.spectatorCount = spectatorCount
+        self.coffeeRequestCount = coffeeRequestCount
+        self.coffeeVotes = coffeeVotes
     }
 }

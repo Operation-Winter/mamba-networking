@@ -60,7 +60,9 @@ fileprivate class Expected {
         "FINISHED_STATE",
         "INVALID_COMMAND",
         "PREVIOUS_TICKETS",
-        "SESSION_IDLE_TIMEOUT"
+        "SESSION_IDLE_TIMEOUT",
+        "COFFEE_VOTING",
+        "COFFEE_VOTING_FINISHED"
     ]
     
     static let hostServerReceiveKey = [
@@ -75,7 +77,10 @@ fileprivate class Expected {
         "EDIT_TICKET",
         "ADD_TIMER",
         "CANCEL_TIMER",
-        "PREVIOUS_TICKETS"
+        "PREVIOUS_TICKETS",
+        "REQUEST_COFFEE_BREAK",
+        "START_COFFEE_BREAK_VOTE",
+        "END_COFFEE_BREAK_VOTE"
     ]
     
     static let joinServerSendKey = [
@@ -86,7 +91,9 @@ fileprivate class Expected {
         "INVALID_SESSION",
         "REMOVE_PARTICIPANT",
         "END_SESSION",
-        "SESSION_IDLE_TIMEOUT"
+        "SESSION_IDLE_TIMEOUT",
+        "COFFEE_VOTING",
+        "COFFEE_VOTING_FINISHED"
     ]
     
     static let joinServerReceiveKey = [
@@ -94,6 +101,8 @@ fileprivate class Expected {
         "VOTE",
         "LEAVE_SESSION",
         "RECONNECT",
-        "CHANGE_NAME"
+        "CHANGE_NAME",
+        "REQUEST_COFFEE_BREAK",
+        "COFFEE_BREAK_VOTE"
     ]
 }

@@ -37,6 +37,11 @@ public extension PlanningCommands.JoinServerReceive {
         case .changeName:
             let model = try container.decode(PlanningChangeNameMessage.self, forKey: .message)
             self = .changeName(uuid: uuid, message: model)
+        case .requestCoffeeBreak:
+            self = .requestCoffeeBreak(uuid: uuid)
+        case .coffeeBreakVote:
+            let model = try container.decode(PlanningCoffeeBreakVoteMessage.self, forKey: .message)
+            self = .coffeeBreakVote(uuid: uuid, message: model)
         }
     }
     
@@ -58,6 +63,11 @@ public extension PlanningCommands.JoinServerReceive {
         case .changeName(let uuid, let message):
             try container.encode(uuid, forKey: .uuid)
             try container.encode(message, forKey: .message)
+        case .requestCoffeeBreak(let uuid):
+            try container.encode(uuid, forKey: .uuid)
+        case .coffeeBreakVote(let uuid, let message):
+            try container.encode(uuid, forKey: .uuid)
+            try container.encode(message, forKey: .message)
         }
     }
     
@@ -73,6 +83,10 @@ public extension PlanningCommands.JoinServerReceive {
             return PlanningCommands.JoinServerReceiveKey.reconnect.rawValue
         case .changeName:
             return PlanningCommands.JoinServerReceiveKey.changeName.rawValue
+        case .requestCoffeeBreak:
+            return PlanningCommands.JoinServerReceiveKey.requestCoffeeBreak.rawValue
+        case .coffeeBreakVote:
+            return PlanningCommands.JoinServerReceiveKey.coffeeBreakVote.rawValue
         }
     }
 }

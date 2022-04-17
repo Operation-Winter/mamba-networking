@@ -23,6 +23,9 @@ public enum PlanningCommands {
         case addTimer = "ADD_TIMER"
         case cancelTimer = "CANCEL_TIMER"
         case previousTickets = "PREVIOUS_TICKETS"
+        case requestCoffeeBreak = "REQUEST_COFFEE_BREAK"
+        case startCoffeeBreakVote = "START_COFFEE_BREAK_VOTE"
+        case endCoffeeBreakVote = "END_COFFEE_BREAK_VOTE"
     }
 
     public enum HostServerReceive: Codable {
@@ -38,6 +41,9 @@ public enum PlanningCommands {
         case addTimer(uuid: UUID, message: PlanningAddTimerMessage)
         case cancelTimer(uuid: UUID)
         case previousTickets(uuid: UUID)
+        case requestCoffeeBreak(uuid: UUID)
+        case startCoffeeBreakVote(uuid: UUID)
+        case endCoffeeBreakVote(uuid: UUID)
     }
     
     // MARK: - Planning Host Server Send
@@ -48,6 +54,8 @@ public enum PlanningCommands {
         case invalidCommand = "INVALID_COMMAND"
         case previousTickets = "PREVIOUS_TICKETS"
         case sessionIdleTimeout = "SESSION_IDLE_TIMEOUT"
+        case coffeeVoting = "COFFEE_VOTING"
+        case coffeeVotingFinished = "COFFEE_VOTING_FINISHED"
     }
     
     public enum HostServerSend: Codable {
@@ -57,6 +65,8 @@ public enum PlanningCommands {
         case invalidCommand(message: PlanningInvalidCommandMessage)
         case previousTickets(message: PlanningPreviousTicketsMessage)
         case sessionIdleTimeout
+        case coffeeVoting(message: PlanningSessionStateMessage)
+        case coffeeVotingFinished(message: PlanningSessionStateMessage)
     }
     
     // MARK: - Planning Join Server Receive
@@ -66,6 +76,8 @@ public enum PlanningCommands {
         case leaveSession = "LEAVE_SESSION"
         case reconnect = "RECONNECT"
         case changeName = "CHANGE_NAME"
+        case requestCoffeeBreak = "REQUEST_COFFEE_BREAK"
+        case coffeeBreakVote = "COFFEE_BREAK_VOTE"
     }
     
     public enum JoinServerReceive: Codable {
@@ -74,6 +86,8 @@ public enum PlanningCommands {
         case leaveSession(uuid: UUID)
         case reconnect(uuid: UUID)
         case changeName(uuid: UUID, message: PlanningChangeNameMessage)
+        case requestCoffeeBreak(uuid: UUID)
+        case coffeeBreakVote(uuid: UUID, message: PlanningCoffeeBreakVoteMessage)
     }
     
     // MARK: - Planning Join Server Send
@@ -86,6 +100,8 @@ public enum PlanningCommands {
         case removeParticipant = "REMOVE_PARTICIPANT"
         case endSession = "END_SESSION"
         case sessionIdleTimeout = "SESSION_IDLE_TIMEOUT"
+        case coffeeVoting = "COFFEE_VOTING"
+        case coffeeVotingFinished = "COFFEE_VOTING_FINISHED"
     }
     
     public enum JoinServerSend: Codable {
@@ -97,6 +113,8 @@ public enum PlanningCommands {
         case removeParticipant
         case endSession
         case sessionIdleTimeout
+        case coffeeVoting(message: PlanningSessionStateMessage)
+        case coffeeVotingFinished(message: PlanningSessionStateMessage)
     }
     
     // MARK: - Planning Spectator Server Receive
@@ -121,6 +139,8 @@ public enum PlanningCommands {
         case invalidSession = "INVALID_SESSION"
         case endSession = "END_SESSION"
         case sessionIdleTimeout = "SESSION_IDLE_TIMEOUT"
+        case coffeeVoting = "COFFEE_VOTING"
+        case coffeeVotingFinished = "COFFEE_VOTING_FINISHED"
     }
     
     public enum SpectatorServerSend: Codable {
@@ -131,5 +151,7 @@ public enum PlanningCommands {
         case invalidSession
         case endSession
         case sessionIdleTimeout
+        case coffeeVoting(message: PlanningSessionStateMessage)
+        case coffeeVotingFinished(message: PlanningSessionStateMessage)
     }
 }

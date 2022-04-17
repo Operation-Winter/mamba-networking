@@ -54,6 +54,12 @@ public extension PlanningCommands.HostServerReceive {
             self = .cancelTimer(uuid: uuid)
         case .previousTickets:
             self = .previousTickets(uuid: uuid)
+        case .requestCoffeeBreak:
+            self = .requestCoffeeBreak(uuid: uuid)
+        case .startCoffeeBreakVote:
+            self = .startCoffeeBreakVote(uuid: uuid)
+        case .endCoffeeBreakVote:
+            self = .endCoffeeBreakVote(uuid: uuid)
         }
     }
     
@@ -92,6 +98,12 @@ public extension PlanningCommands.HostServerReceive {
             try container.encode(uuid, forKey: .uuid)
         case .previousTickets(let uuid):
             try container.encode(uuid, forKey: .uuid)
+        case .requestCoffeeBreak(let uuid):
+            try container.encode(uuid, forKey: .uuid)
+        case .startCoffeeBreakVote(let uuid):
+            try container.encode(uuid, forKey: .uuid)
+        case .endCoffeeBreakVote(let uuid):
+            try container.encode(uuid, forKey: .uuid)
         }
     }
     
@@ -121,6 +133,12 @@ public extension PlanningCommands.HostServerReceive {
             return PlanningCommands.HostServerReceiveKey.cancelTimer.rawValue
         case .previousTickets:
             return PlanningCommands.HostServerReceiveKey.previousTickets.rawValue
+        case .requestCoffeeBreak:
+            return PlanningCommands.HostServerReceiveKey.requestCoffeeBreak.rawValue
+        case .startCoffeeBreakVote:
+            return PlanningCommands.HostServerReceiveKey.startCoffeeBreakVote.rawValue
+        case .endCoffeeBreakVote:
+            return PlanningCommands.HostServerReceiveKey.endCoffeeBreakVote.rawValue
         }
     }
 }

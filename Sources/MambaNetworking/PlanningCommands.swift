@@ -47,6 +47,7 @@ public enum PlanningCommands {
         case finishedState = "FINISHED_STATE"
         case invalidCommand = "INVALID_COMMAND"
         case previousTickets = "PREVIOUS_TICKETS"
+        case sessionIdleTimeout = "SESSION_IDLE_TIMEOUT"
     }
     
     public enum HostServerSend: Codable {
@@ -55,6 +56,7 @@ public enum PlanningCommands {
         case finishedState(message: PlanningSessionStateMessage)
         case invalidCommand(message: PlanningInvalidCommandMessage)
         case previousTickets(message: PlanningPreviousTicketsMessage)
+        case sessionIdleTimeout
     }
     
     // MARK: - Planning Join Server Receive
@@ -83,6 +85,7 @@ public enum PlanningCommands {
         case invalidSession = "INVALID_SESSION"
         case removeParticipant = "REMOVE_PARTICIPANT"
         case endSession = "END_SESSION"
+        case sessionIdleTimeout = "SESSION_IDLE_TIMEOUT"
     }
     
     public enum JoinServerSend: Codable {
@@ -93,5 +96,6 @@ public enum PlanningCommands {
         case invalidSession
         case removeParticipant
         case endSession
+        case sessionIdleTimeout
     }
 }

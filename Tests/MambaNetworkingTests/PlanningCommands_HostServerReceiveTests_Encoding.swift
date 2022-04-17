@@ -199,7 +199,7 @@ fileprivate class Mocks {
     }()
     
     static let startSession: PlanningCommands.HostServerReceive = {
-        let message = PlanningStartSessionMessage(sessionName: "Test", availableCards: [PlanningCard.coffee])
+        let message = PlanningStartSessionMessage(sessionName: "Test", autoCompleteVoting: false, availableCards: [PlanningCard.question])
         return .startSession(uuid: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), message: message)
     }()
     
@@ -239,7 +239,7 @@ fileprivate class Expected {
         """
     
     static let startSession = """
-        {"type":"START_SESSION","message":{"availableCards":["COFFEE"],"sessionName":"Test"},"uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+        {"type":"START_SESSION","message":{"autoCompleteVoting":false,"availableCards":["QUESTION"],"sessionName":"Test"},"uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
         """
     
     static let skipVote = """

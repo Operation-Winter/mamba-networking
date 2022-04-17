@@ -138,14 +138,14 @@ fileprivate class Mocks {
         "message": {
             "sessionCode": "000000",
             "sessionName": "Test",
-            "availableCards": ["COFFEE"],
+            "availableCards": ["QUESTION"],
             "participants": [
                 {"participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "name": "Test", "connected": false }
             ],
             "ticket": {
                 "title": "x",
                 "description":"Test",
-                "ticketVotes": [{"participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "selectedCard": "COFFEE"}]
+                "ticketVotes": [{"participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "selectedCard": "QUESTION"}]
             }
         },
         "uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"
@@ -156,9 +156,9 @@ fileprivate class Mocks {
     {
         "type": "VOTING_STATE",
         "message": {
-            "sessionCode": "000000", "sessionName": "Test", "availableCards": ["COFFEE"],
+            "sessionCode": "000000", "sessionName": "Test", "availableCards": ["QUESTION"],
             "participants": [{ "participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "name": "Test", "connected": false }], "ticket": {
-                "title": "x", "description":"Test", "ticketVotes": [{"participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "selectedCard": "COFFEE"}]
+                "title": "x", "description":"Test", "ticketVotes": [{"participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "selectedCard": "QUESTION"}]
             }
         },
         "uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"
@@ -169,9 +169,9 @@ fileprivate class Mocks {
     {
         "type": "FINISHED_STATE",
         "message": {
-            "sessionCode": "000000", "sessionName": "Test", "availableCards": ["COFFEE"],
+            "sessionCode": "000000", "sessionName": "Test", "availableCards": ["QUESTION"],
             "participants": [{ "participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "name": "Test", "connected": false }], "ticket": {
-                "title": "x", "description":"Test", "ticketVotes": [{"participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "selectedCard": "COFFEE"}]
+                "title": "x", "description":"Test", "ticketVotes": [{"participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "selectedCard": "QUESTION"}]
             }
         },
         "uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"
@@ -185,11 +185,11 @@ fileprivate class Mocks {
 
 fileprivate class Expected {
     static let stateMessage: PlanningSessionStateMessage = {
-        let planningTicket = PlanningTicket(title: "x", description: "Test", ticketVotes: [PlanningTicketVote(participantId: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), selectedCard: .coffee)])
+        let planningTicket = PlanningTicket(title: "x", description: "Test", ticketVotes: [PlanningTicketVote(participantId: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), selectedCard: .question)])
         
         return PlanningSessionStateMessage(sessionCode: "000000",
                                            sessionName: "Test",
-                                           availableCards: [.coffee],
+                                           availableCards: [.question],
                                            participants: [
                                             PlanningParticipant(participantId: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), name: "Test",
                                                                 connected: false)

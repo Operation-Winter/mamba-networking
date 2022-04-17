@@ -40,6 +40,8 @@ public extension PlanningCommands.JoinServerSend {
             self = .removeParticipant
         case .endSession:
             self = .endSession
+        case .sessionIdleTimeout:
+            self = .sessionIdleTimeout
         }
     }
     
@@ -55,6 +57,7 @@ public extension PlanningCommands.JoinServerSend {
         case .invalidSession: break
         case .removeParticipant: break
         case .endSession: break
+        case .sessionIdleTimeout: break
         }
     }
     
@@ -74,6 +77,8 @@ public extension PlanningCommands.JoinServerSend {
             return PlanningCommands.JoinServerSendKey.removeParticipant.rawValue
         case .endSession:
             return PlanningCommands.JoinServerSendKey.endSession.rawValue
+        case .sessionIdleTimeout:
+            return PlanningCommands.JoinServerSendKey.sessionIdleTimeout.rawValue
         }
     }
 }

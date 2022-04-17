@@ -94,7 +94,7 @@ fileprivate class Mocks {
     }()
     
     static let vote: PlanningCommands.JoinServerReceive = {
-        let message = PlanningVoteMessage(selectedCard: .coffee)
+        let message = PlanningVoteMessage(selectedCard: .question)
         return .vote(uuid: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), message: message)
     }()
     
@@ -113,7 +113,7 @@ fileprivate class Expected {
         """
     
     static let vote = """
-        {"type":"VOTE","message":{"selectedCard":"COFFEE"},"uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+        {"type":"VOTE","message":{"selectedCard":"QUESTION"},"uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
         """
     
     static let leaveSession = """

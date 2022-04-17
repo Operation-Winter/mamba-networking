@@ -59,7 +59,8 @@ fileprivate class Expected {
         "VOTING_STATE",
         "FINISHED_STATE",
         "INVALID_COMMAND",
-        "PREVIOUS_TICKETS"
+        "PREVIOUS_TICKETS",
+        "SESSION_IDLE_TIMEOUT"
     ]
     
     static let hostServerReceiveKey = [
@@ -84,7 +85,8 @@ fileprivate class Expected {
         "INVALID_COMMAND",
         "INVALID_SESSION",
         "REMOVE_PARTICIPANT",
-        "END_SESSION"
+        "END_SESSION",
+        "SESSION_IDLE_TIMEOUT"
     ]
     
     static let joinServerReceiveKey = [

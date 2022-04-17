@@ -37,6 +37,8 @@ public extension PlanningCommands.HostServerSend {
         case .previousTickets:
             let model = try container.decode(PlanningPreviousTicketsMessage.self, forKey: .message)
             self = .previousTickets(message: model)
+        case .sessionIdleTimeout:
+            self = .sessionIdleTimeout
         }
     }
     
@@ -50,6 +52,7 @@ public extension PlanningCommands.HostServerSend {
         case .finishedState(let message): try container.encode(message, forKey: .message)
         case .invalidCommand(let message): try container.encode(message, forKey: .message)
         case .previousTickets(let message): try container.encode(message, forKey: .message)
+        case .sessionIdleTimeout: break
         }
     }
     
@@ -65,6 +68,8 @@ public extension PlanningCommands.HostServerSend {
             return PlanningCommands.HostServerSendKey.invalidCommand.rawValue
         case .previousTickets:
             return PlanningCommands.HostServerSendKey.previousTickets.rawValue
+        case .sessionIdleTimeout:
+            return PlanningCommands.HostServerSendKey.sessionIdleTimeout.rawValue
         }
     }
 }

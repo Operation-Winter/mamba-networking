@@ -194,7 +194,7 @@ class PlanningCommands_HostServerReceiveTests_Encoding: XCTestCase {
 
 fileprivate class Mocks {
     static let addTicket: PlanningCommands.HostServerReceive = {
-        let message = PlanningTicketMessage(title: "x", description: "Test")
+        let message = PlanningTicketMessage(title: "x", description: "Test", selectedTags: ["Tag"])
         return .addTicket(uuid: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), message: message)
     }()
     
@@ -219,7 +219,7 @@ fileprivate class Mocks {
     static let revote = PlanningCommands.HostServerReceive.revote(uuid: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID())
     
     static let editTicket: PlanningCommands.HostServerReceive = {
-        let message = PlanningTicketMessage(title: "x", description: "Test")
+        let message = PlanningTicketMessage(title: "x", description: "Test", selectedTags: ["Tag"])
         return .editTicket(uuid: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), message: message)
     }()
     
@@ -235,7 +235,7 @@ fileprivate class Mocks {
 
 fileprivate class Expected {
     static let addTicket = """
-        {"type":"ADD_TICKET","message":{"title":"x","description":"Test"},"uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+        {"type":"ADD_TICKET","message":{"title":"x","selectedTags":["Tag"],"description":"Test"},"uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
         """
     
     static let startSession = """
@@ -267,7 +267,7 @@ fileprivate class Expected {
         """
     
     static let editTicket = """
-        {"type":"EDIT_TICKET","message":{"title":"x","description":"Test"},"uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+        {"type":"EDIT_TICKET","message":{"title":"x","selectedTags":["Tag"],"description":"Test"},"uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
         """
     
     static let addTimer = """

@@ -11,9 +11,11 @@ import Foundation
 public struct PlanningTicketMessage: Codable {
     public let title: String
     public let description: String
+    public let selectedTags: Set<String>
     
-    public init(title: String, description: String) {
+    public init(title: String, description: String, selectedTags: Set<String>) {
         self.title = title
         self.description = description
+        self.selectedTags = selectedTags
     }
 }

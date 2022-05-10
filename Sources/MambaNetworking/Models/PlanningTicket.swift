@@ -11,11 +11,16 @@ import Foundation
 public class PlanningTicket: Codable {
     public var title: String
     public var description: String
+    public var selectedTags: Set<String>
     public private(set) var ticketVotes: [PlanningTicketVote]
     
-    public init(title: String, description: String, ticketVotes: [PlanningTicketVote] = []) {
+    public init(title: String,
+                description: String,
+                selectedTags: Set<String>,
+                ticketVotes: [PlanningTicketVote] = []) {
         self.title = title
         self.description = description
+        self.selectedTags = selectedTags
         self.ticketVotes = ticketVotes
     }
     

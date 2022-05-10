@@ -145,6 +145,7 @@ fileprivate class Mocks {
             "ticket": {
                 "title": "x",
                 "description":"Test",
+                "selectedTags":["Test"],
                 "ticketVotes": [{"participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "selectedCard": "QUESTION"}]
             },
             "tags": ["iOS"],
@@ -162,8 +163,9 @@ fileprivate class Mocks {
         "type": "VOTING_STATE",
         "message": {
             "sessionCode": "000000", "sessionName": "Test", "availableCards": ["QUESTION"],
-            "participants": [{ "participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "name": "Test", "connected": false }], "ticket": {
-                "title": "x", "description":"Test", "ticketVotes": [{"participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "selectedCard": "QUESTION"}]
+            "participants": [{ "participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "name": "Test", "connected": false }],
+            "ticket": {
+                "title": "x", "description":"Test", "selectedTags":["Test"], "ticketVotes": [{"participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "selectedCard": "QUESTION"}]
             },
             "tags": ["iOS"],
             "password": "password",
@@ -180,8 +182,9 @@ fileprivate class Mocks {
         "type": "FINISHED_STATE",
         "message": {
             "sessionCode": "000000", "sessionName": "Test", "availableCards": ["QUESTION"],
-            "participants": [{ "participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "name": "Test", "connected": false }], "ticket": {
-                "title": "x", "description":"Test", "ticketVotes": [{"participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "selectedCard": "QUESTION"}]
+            "participants": [{ "participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "name": "Test", "connected": false }],
+            "ticket": {
+                "title": "x", "description":"Test", "selectedTags":["Test"], "ticketVotes": [{"participantId": "754909ED-1648-4B51-AB55-4CA6C8910231", "selectedCard": "QUESTION"}]
             },
             "tags": ["iOS"],
             "password": "password",
@@ -200,7 +203,7 @@ fileprivate class Mocks {
 
 fileprivate class Expected {
     static let stateMessage: PlanningSessionStateMessage = {
-        let planningTicket = PlanningTicket(title: "x", description: "Test", ticketVotes: [PlanningTicketVote(participantId: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), selectedCard: .question)])
+        let planningTicket = PlanningTicket(title: "x", description: "Test", selectedTags: ["Test"], ticketVotes: [PlanningTicketVote(participantId: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), selectedCard: .question, tag: "Tag")])
         
         return PlanningSessionStateMessage(sessionCode: "000000",
                                            sessionName: "Test",

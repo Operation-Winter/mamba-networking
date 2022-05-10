@@ -10,8 +10,10 @@ import Foundation
 
 public struct PlanningVoteMessage: Codable {
     public let selectedCard: PlanningCard
+    public let tag: String?
     
-    public init(selectedCard: PlanningCard) {
+    public init(selectedCard: PlanningCard, tag: String?) {
         self.selectedCard = selectedCard
+        self.tag = tag
     }
 }

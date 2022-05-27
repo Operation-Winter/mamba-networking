@@ -278,7 +278,7 @@ fileprivate class Expected {
     static let stateMessage: PlanningSessionStateMessage = {
         let planningTicket = PlanningTicket(title: "x", description: "Test", selectedTags: ["Test"], ticketVotes: [PlanningTicketVote(participantId: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), selectedCard: .question, tag: "Tag")])
         
-        return PlanningSessionStateMessage(sessionCode: "000000", sessionName: "Test", availableCards: [.question], participants: [PlanningParticipant(participantId: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), name: "Test", connected: false)], ticket: planningTicket, timeLeft: 2, tags: ["iOS"], spectatorCount: 1, coffeeRequestCount: 2, coffeeVotes: [])
+        return PlanningSessionStateMessage(sessionCode: "000000", sessionName: "Test", password: "Password", availableCards: [.question], participants: [PlanningParticipant(participantId: UUID(uuidString: "754909ED-1648-4B51-AB55-4CA6C8910231") ?? UUID(), name: "Test", connected: false)], ticket: planningTicket, timeLeft: 2, spectatorCount: 1, coffeeRequestCount: 2, coffeeVotes: [])
     }()
     
     static let invalidCommandMessage = PlanningInvalidCommandMessage(code: "0", description: "Test")

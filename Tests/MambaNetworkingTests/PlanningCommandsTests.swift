@@ -80,7 +80,8 @@ fileprivate class Expected {
         "PREVIOUS_TICKETS",
         "REQUEST_COFFEE_BREAK",
         "START_COFFEE_BREAK_VOTE",
-        "END_COFFEE_BREAK_VOTE"
+        "END_COFFEE_BREAK_VOTE",
+        "COFFEE_BREAK_VOTE"
     ]
     
     static let joinServerSendKey = [

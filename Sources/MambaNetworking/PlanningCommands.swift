@@ -26,6 +26,7 @@ public enum PlanningCommands {
         case requestCoffeeBreak = "REQUEST_COFFEE_BREAK"
         case startCoffeeBreakVote = "START_COFFEE_BREAK_VOTE"
         case endCoffeeBreakVote = "END_COFFEE_BREAK_VOTE"
+        case coffeeBreakVote = "COFFEE_BREAK_VOTE"
     }
 
     public enum HostServerReceive: Codable {
@@ -43,6 +44,7 @@ public enum PlanningCommands {
         case previousTickets(uuid: UUID)
         case requestCoffeeBreak(uuid: UUID)
         case startCoffeeBreakVote(uuid: UUID)
+        case coffeeBreakVote(uuid: UUID, message: PlanningCoffeeVote)
         case endCoffeeBreakVote(uuid: UUID)
     }
     

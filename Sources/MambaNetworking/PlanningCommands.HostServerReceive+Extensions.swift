@@ -58,6 +58,9 @@ public extension PlanningCommands.HostServerReceive {
             self = .requestCoffeeBreak(uuid: uuid)
         case .startCoffeeBreakVote:
             self = .startCoffeeBreakVote(uuid: uuid)
+        case .coffeeBreakVote:
+            let model = try container.decode(PlanningCoffeeVote.self, forKey: .message)
+            self = .coffeeBreakVote(uuid: uuid, message: model)
         case .endCoffeeBreakVote:
             self = .endCoffeeBreakVote(uuid: uuid)
         }
@@ -104,6 +107,9 @@ public extension PlanningCommands.HostServerReceive {
             try container.encode(uuid, forKey: .uuid)
         case .endCoffeeBreakVote(let uuid):
             try container.encode(uuid, forKey: .uuid)
+        case .coffeeBreakVote(let uuid, let message):
+            try container.encode(uuid, forKey: .uuid)
+            try container.encode(message, forKey: .message)
         }
     }
     
@@ -139,6 +145,8 @@ public extension PlanningCommands.HostServerReceive {
             return PlanningCommands.HostServerReceiveKey.startCoffeeBreakVote.rawValue
         case .endCoffeeBreakVote:
             return PlanningCommands.HostServerReceiveKey.endCoffeeBreakVote.rawValue
+        case .coffeeBreakVote:
+            return PlanningCommands.HostServerReceiveKey.coffeeBreakVote.rawValue
         }
     }
 }

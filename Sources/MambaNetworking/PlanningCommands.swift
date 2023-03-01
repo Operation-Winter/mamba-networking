@@ -25,6 +25,7 @@ public enum PlanningCommands {
         case previousTickets = "PREVIOUS_TICKETS"
         case requestCoffeeBreak = "REQUEST_COFFEE_BREAK"
         case startCoffeeBreakVote = "START_COFFEE_BREAK_VOTE"
+        case finishCoffeeBreakVote = "FINISH_COFFEE_BREAK_VOTE"
         case endCoffeeBreakVote = "END_COFFEE_BREAK_VOTE"
         case coffeeBreakVote = "COFFEE_BREAK_VOTE"
     }
@@ -45,6 +46,7 @@ public enum PlanningCommands {
         case requestCoffeeBreak(uuid: UUID)
         case startCoffeeBreakVote(uuid: UUID)
         case coffeeBreakVote(uuid: UUID, message: PlanningCoffeeBreakVoteMessage)
+        case finishCoffeeBreakVote(uuid: UUID)
         case endCoffeeBreakVote(uuid: UUID)
     }
     

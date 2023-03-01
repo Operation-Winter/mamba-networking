@@ -44,7 +44,7 @@ public enum PlanningCommands {
         case previousTickets(uuid: UUID)
         case requestCoffeeBreak(uuid: UUID)
         case startCoffeeBreakVote(uuid: UUID)
-        case coffeeBreakVote(uuid: UUID, message: PlanningCoffeeVote)
+        case coffeeBreakVote(uuid: UUID, message: PlanningCoffeeBreakVoteMessage)
         case endCoffeeBreakVote(uuid: UUID)
     }
     

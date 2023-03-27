@@ -38,6 +38,7 @@ class PlanningCommands_HostServerSendTests_Decoding: XCTestCase {
             
             XCTAssertEqual(message.ticket?.ticketVotes.first?.selectedCard, Expected.stateMessage.ticket?.ticketVotes.first?.selectedCard)
             XCTAssertEqual(message.ticket?.ticketVotes.first?.participantId, Expected.stateMessage.ticket?.ticketVotes.first?.participantId)
+            XCTAssertEqual(message.updated, Expected.stateMessage.updated)
         } else {
             XCTFail("Wrong command has been mapped")
         }
@@ -70,6 +71,7 @@ class PlanningCommands_HostServerSendTests_Decoding: XCTestCase {
             
             XCTAssertEqual(message.ticket?.ticketVotes.first?.selectedCard, Expected.stateMessage.ticket?.ticketVotes.first?.selectedCard)
             XCTAssertEqual(message.ticket?.ticketVotes.first?.participantId, Expected.stateMessage.ticket?.ticketVotes.first?.participantId)
+            XCTAssertEqual(message.updated, Expected.stateMessage.updated)
         } else {
             XCTFail("Wrong command has been mapped")
         }
@@ -102,6 +104,7 @@ class PlanningCommands_HostServerSendTests_Decoding: XCTestCase {
             
             XCTAssertEqual(message.ticket?.ticketVotes.first?.selectedCard, Expected.stateMessage.ticket?.ticketVotes.first?.selectedCard)
             XCTAssertEqual(message.ticket?.ticketVotes.first?.participantId, Expected.stateMessage.ticket?.ticketVotes.first?.participantId)
+            XCTAssertEqual(message.updated, Expected.stateMessage.updated)
         } else {
             XCTFail("Wrong command has been mapped")
         }
@@ -152,7 +155,8 @@ fileprivate class Mocks {
             "password": "password",
             "spectatorCount": 1,
             "coffeeRequestCount": 2,
-            "coffeeVotes": []
+            "coffeeVotes": [],
+            "updated": "2020-05-31T04:32:27Z"
         },
         "uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"
     }
@@ -171,7 +175,8 @@ fileprivate class Mocks {
             "password": "password",
             "spectatorCount": 1,
             "coffeeRequestCount": 2,
-            "coffeeVotes": []
+            "coffeeVotes": [],
+            "updated": "2020-05-31T04:32:27Z"
         },
         "uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"
     }
@@ -190,7 +195,8 @@ fileprivate class Mocks {
             "password": "password",
             "spectatorCount": 1,
             "coffeeRequestCount": 2,
-            "coffeeVotes": []
+            "coffeeVotes": [],
+            "updated": "2020-05-31T04:32:27Z"
         },
         "uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"
     }
@@ -216,7 +222,8 @@ fileprivate class Expected {
                                            timeLeft: 2,
                                            spectatorCount: 1,
                                            coffeeRequestCount: 2,
-                                           coffeeVotes: nil)
+                                           coffeeVotes: nil,
+                                           updated: DateFormatter().date(from: "2020-05-31T04:32:27Z")!)
     }()
     
     static let invalidCommandMessage = PlanningInvalidCommandMessage(code: "0", description: "Test")

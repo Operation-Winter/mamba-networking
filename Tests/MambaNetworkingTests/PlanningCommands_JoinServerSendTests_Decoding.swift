@@ -10,6 +10,13 @@ import XCTest
 @testable import MambaNetworking
 
 class PlanningCommands_JoinServerSendTests_Decoding: XCTestCase {
+    private var decoder: JSONDecoder!
+    
+    override func setUp() {
+        super.setUp()
+        decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+    }
     
     func testNoneStateCommandDecoding() {
         // Given: mocked json
@@ -18,7 +25,7 @@ class PlanningCommands_JoinServerSendTests_Decoding: XCTestCase {
         // When: JSON is mapped to a command
         guard
             let data = mockedJson.data(using: .utf8),
-            let command = try? JSONDecoder().decode(PlanningCommands.JoinServerSend.self, from: data)
+            let command = try? decoder.decode(PlanningCommands.JoinServerSend.self, from: data)
         else {
             XCTFail("Error thrown")
             return
@@ -51,7 +58,7 @@ class PlanningCommands_JoinServerSendTests_Decoding: XCTestCase {
         // When: JSON is mapped to a command
         guard
             let data = mockedJson.data(using: .utf8),
-            let command = try? JSONDecoder().decode(PlanningCommands.JoinServerSend.self, from: data)
+            let command = try? decoder.decode(PlanningCommands.JoinServerSend.self, from: data)
         else {
             XCTFail("Error thrown")
             return
@@ -84,7 +91,7 @@ class PlanningCommands_JoinServerSendTests_Decoding: XCTestCase {
         // When: JSON is mapped to a command
         guard
             let data = mockedJson.data(using: .utf8),
-            let command = try? JSONDecoder().decode(PlanningCommands.JoinServerSend.self, from: data)
+            let command = try? decoder.decode(PlanningCommands.JoinServerSend.self, from: data)
         else {
             XCTFail("Error thrown")
             return
@@ -117,7 +124,7 @@ class PlanningCommands_JoinServerSendTests_Decoding: XCTestCase {
         // When: JSON is mapped to a command
         guard
             let data = mockedJson.data(using: .utf8),
-            let command = try? JSONDecoder().decode(PlanningCommands.JoinServerSend.self, from: data)
+            let command = try? decoder.decode(PlanningCommands.JoinServerSend.self, from: data)
         else {
             XCTFail("Error thrown")
             return
@@ -139,7 +146,7 @@ class PlanningCommands_JoinServerSendTests_Decoding: XCTestCase {
         // When: JSON is mapped to a command
         guard
             let data = mockedJson.data(using: .utf8),
-            let command = try? JSONDecoder().decode(PlanningCommands.JoinServerSend.self, from: data)
+            let command = try? decoder.decode(PlanningCommands.JoinServerSend.self, from: data)
         else {
             XCTFail("Error thrown")
             return
@@ -158,7 +165,7 @@ class PlanningCommands_JoinServerSendTests_Decoding: XCTestCase {
         // When: JSON is mapped to a command
         guard
             let data = mockedJson.data(using: .utf8),
-            let command = try? JSONDecoder().decode(PlanningCommands.JoinServerSend.self, from: data)
+            let command = try? decoder.decode(PlanningCommands.JoinServerSend.self, from: data)
         else {
             XCTFail("Error thrown")
             return
@@ -177,7 +184,7 @@ class PlanningCommands_JoinServerSendTests_Decoding: XCTestCase {
         // When: JSON is mapped to a command
         guard
             let data = mockedJson.data(using: .utf8),
-            let command = try? JSONDecoder().decode(PlanningCommands.JoinServerSend.self, from: data)
+            let command = try? decoder.decode(PlanningCommands.JoinServerSend.self, from: data)
         else {
             XCTFail("Error thrown")
             return
@@ -294,7 +301,7 @@ fileprivate class Expected {
                                            spectatorCount: 1,
                                            coffeeRequestCount: 2,
                                            coffeeVotes: [],
-                                           updated: DateFormatter().date(from: "2020-05-31T04:32:27+00:00")!)
+                                           updated:  ISO8601DateFormatter().date(from: "2020-05-31T04:32:27Z")!)
     }()
     
     static let invalidCommandMessage = PlanningInvalidCommandMessage(code: "0", description: "Test")

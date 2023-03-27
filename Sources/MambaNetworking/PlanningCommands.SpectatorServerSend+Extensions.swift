@@ -17,7 +17,6 @@ public extension PlanningCommands.SpectatorServerSend {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let type = try container.decode(String.self, forKey: .type)
-        (decoder as? JSONDecoder)?.dateDecodingStrategy = .iso8601
         
         guard let commandType = PlanningCommands.SpectatorServerSendKey(rawValue: type) else {
             throw DecodingError.keyNotFound(CodingKeys.message, DecodingError.Context(codingPath: [], debugDescription: "Invalid key: \(type)"))

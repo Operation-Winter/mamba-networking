@@ -77,6 +77,7 @@ public enum PlanningCommands {
     public enum JoinServerReceiveKey: String, CaseIterable {
         case joinSession = "JOIN_SESSION"
         case vote = "VOTE"
+        case concedeVote = "CONCEDE_VOTE"
         case leaveSession = "LEAVE_SESSION"
         case reconnect = "RECONNECT"
         case changeName = "CHANGE_NAME"
@@ -87,6 +88,7 @@ public enum PlanningCommands {
     public enum JoinServerReceive: Codable {
         case joinSession(uuid: UUID, message: PlanningJoinSessionMessage)
         case vote(uuid: UUID, message: PlanningVoteMessage)
+        case concedeVote(uuid: UUID, message: PlanningVoteMessage)
         case leaveSession(uuid: UUID)
         case reconnect(uuid: UUID)
         case changeName(uuid: UUID, message: PlanningChangeNameMessage)

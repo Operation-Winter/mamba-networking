@@ -51,6 +51,25 @@ class PlanningCommandsTests: XCTestCase {
         }
     }
 
+    func testSpectatorServerSendKeyRawValues() {
+        // When: Spectator command keys are mapped
+        let spectatorKeys = PlanningCommands.SpectatorServerSendKey.allCases
+        
+        // Then: the keys match expected values
+        for (index, key) in spectatorKeys.enumerated() {
+            XCTAssertEqual(key.rawValue, Expected.spectatorServerSendKey.element(at: index))
+        }
+    }
+    
+    func testSpectatorServerReceiveKeyRawValues() {
+        // When: Spectator command keys are mapped
+        let spectatorKeys = PlanningCommands.SpectatorServerReceiveKey.allCases
+        
+        // Then: the keys match expected values
+        for (index, key) in spectatorKeys.enumerated() {
+            XCTAssertEqual(key.rawValue, Expected.spectatorServerReceiveKey.element(at: index))
+        }
+    }
 }
 
 fileprivate class Expected {
@@ -101,10 +120,29 @@ fileprivate class Expected {
     static let joinServerReceiveKey = [
         "JOIN_SESSION",
         "VOTE",
+        "CONCEDE_VOTE",
         "LEAVE_SESSION",
         "RECONNECT",
         "CHANGE_NAME",
         "REQUEST_COFFEE_BREAK",
         "COFFEE_BREAK_VOTE"
+    ]
+    
+    static let spectatorServerSendKey = [
+        "NONE_STATE",
+        "VOTING_STATE",
+        "FINISHED_STATE",
+        "INVALID_COMMAND",
+        "INVALID_SESSION",
+        "END_SESSION",
+        "SESSION_IDLE_TIMEOUT",
+        "COFFEE_VOTING",
+        "COFFEE_VOTING_FINISHED"
+    ]
+    
+    static let spectatorServerReceiveKey = [
+        "JOIN_SESSION",
+        "LEAVE_SESSION",
+        "RECONNECT"
     ]
 }

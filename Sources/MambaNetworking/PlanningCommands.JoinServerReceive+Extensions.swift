@@ -21,7 +21,9 @@ public extension PlanningCommands.JoinServerReceive {
         let uuid = try container.decode(UUID.self, forKey: .uuid)
         
         guard let commandType = PlanningCommands.JoinServerReceiveKey(rawValue: type) else {
-            throw DecodingError.keyNotFound(CodingKeys.message, DecodingError.Context(codingPath: [], debugDescription: "Invalid key: \(type)"))
+            throw DecodingError.keyNotFound(CodingKeys.message,
+                                            DecodingError.Context(codingPath: [],
+                                                                  debugDescription: "Invalid key: \(type)"))
         }
         switch commandType {
         case .joinSession:
@@ -42,6 +44,9 @@ public extension PlanningCommands.JoinServerReceive {
         case .coffeeBreakVote:
             let model = try container.decode(PlanningCoffeeBreakVoteMessage.self, forKey: .message)
             self = .coffeeBreakVote(uuid: uuid, message: model)
+        case .concedeVote:
+            let model = try container.decode(PlanningVoteMessage.self, forKey: .message)
+            self = .concedeVote(uuid: uuid, message: model)
         }
     }
     
@@ -68,6 +73,9 @@ public extension PlanningCommands.JoinServerReceive {
         case .coffeeBreakVote(let uuid, let message):
             try container.encode(uuid, forKey: .uuid)
             try container.encode(message, forKey: .message)
+        case .concedeVote(let uuid, let message):
+            try container.encode(uuid, forKey: .uuid)
+            try container.encode(message, forKey: .message)
         }
     }
     
@@ -87,6 +95,8 @@ public extension PlanningCommands.JoinServerReceive {
             return PlanningCommands.JoinServerReceiveKey.requestCoffeeBreak.rawValue
         case .coffeeBreakVote:
             return PlanningCommands.JoinServerReceiveKey.coffeeBreakVote.rawValue
+        case .concedeVote:
+            return PlanningCommands.JoinServerReceiveKey.concedeVote.rawValue
         }
     }
 }

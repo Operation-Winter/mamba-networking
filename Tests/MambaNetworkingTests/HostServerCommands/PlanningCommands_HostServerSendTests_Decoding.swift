@@ -18,6 +18,19 @@ class PlanningCommands_HostServerSendTests_Decoding: XCTestCase {
         decoder.dateDecodingStrategy = .iso8601
     }
     
+    func testInvalidParsingCommandDecoding() {
+        // Given: mocked json
+        let mockedJson = TestDataGenerator.invalidEncodedCommand
+        
+        // When: JSON is mapped to a command
+        guard let data = mockedJson.data(using: .utf8) else {
+            XCTFail("Error thrown")
+            return
+        }
+        
+        XCTAssertThrowsError(try decoder.decode(PlanningCommands.HostServerSend.self, from: data))
+    }
+    
     func testNoneStateCommandDecoding() {
         // Given: mocked json
         let mockedJson = Mocks.noneState

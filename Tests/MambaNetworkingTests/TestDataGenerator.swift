@@ -240,4 +240,135 @@ class TestDataGenerator {
             { "type": "SESSION_IDLE_TIMEOUT","uuid":"754909ED-1648-4B51-AB55-4CA6C8910231" }
             """
     }
+    
+    class HostServerReceive {
+        static let addTicket: PlanningCommands.HostServerReceive = .addTicket(uuid: uuid,
+                                                                              message: addTicketMessage)
+        
+        static let addTicketMessage = PlanningTicketMessage(title: "x",
+                                                            description: "Test",
+                                                            selectedTags: ["Tag"])
+        
+        static let startSession: PlanningCommands.HostServerReceive = .startSession(uuid: uuid,
+                                                                                    message: startSessionMessage)
+        
+        static let startSessionMessage = PlanningStartSessionMessage(sessionName: "Test",
+                                                                     autoCompleteVoting: false,
+                                                                     availableCards: [PlanningCard.question],
+                                                                     password: "password")
+        
+        static let skipVote: PlanningCommands.HostServerReceive = .skipVote(uuid: uuid,
+                                                                            message: skipVoteMessage)
+        
+        static let skipVoteMessage = PlanningSkipVoteMessage(participantId: uuid)
+        
+        static let removeParticipant: PlanningCommands.HostServerReceive = .removeParticipant(uuid: uuid,
+                                                                                              message: removeParticipantMessage)
+        
+        static let removeParticipantMessage = PlanningRemoveParticipantMessage(participantId: uuid)
+        
+        static let endSession: PlanningCommands.HostServerReceive = .endSession(uuid: uuid)
+        static let finishVoting: PlanningCommands.HostServerReceive = .finishVoting(uuid: uuid)
+        static let reconnect: PlanningCommands.HostServerReceive = .reconnect(uuid: uuid)
+        static let revote: PlanningCommands.HostServerReceive = .revote(uuid: uuid)
+        
+        static let editTicket: PlanningCommands.HostServerReceive = .editTicket(uuid: uuid,
+                                                                                message: editTicketMessage)
+        
+        static let editTicketMessage = PlanningTicketMessage(title: "x",
+                                                             description: "Test",
+                                                             selectedTags: ["Tag"])
+        
+        static let addTimer: PlanningCommands.HostServerReceive = .addTimer(uuid: uuid,
+                                                                            message: addTimerMessage)
+        
+        static let addTimerMessage = PlanningAddTimerMessage(time: 2)
+        
+        static let cancelTimer: PlanningCommands.HostServerReceive = .cancelTimer(uuid: uuid)
+        
+        static let previousTickets: PlanningCommands.HostServerReceive = .previousTickets(uuid: uuid)
+        
+        static let requestCoffeeBreak: PlanningCommands.HostServerReceive = .requestCoffeeBreak(uuid: uuid)
+        
+        static let coffeeBreakVote: PlanningCommands.HostServerReceive = .coffeeBreakVote(uuid: uuid,
+                                                                                          message: coffeeBreakVoteMessage)
+        
+        static let coffeeBreakVoteMessage = PlanningCoffeeBreakVoteMessage(vote: true)
+        
+        static let startCoffeeBreakVote: PlanningCommands.HostServerReceive = .startCoffeeBreakVote(uuid: uuid)
+        
+        static let endCoffeeBreakVote: PlanningCommands.HostServerReceive = .endCoffeeBreakVote(uuid: uuid)
+        
+        static let finishCoffeeBreakVote: PlanningCommands.HostServerReceive = .finishCoffeeBreakVote(uuid: uuid)
+    }
+
+    class HostServerReceiveEncoded {
+        static let addTicket = """
+            {"type":"ADD_TICKET","message":{"title":"x","selectedTags":["Tag"],"description":"Test"},"uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+            """
+        
+        static let startSession = """
+            {"type":"START_SESSION","message":{"password":"password","autoCompleteVoting":false,"availableCards":["QUESTION"],"sessionName":"Test"},"uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+            """
+        
+        static let skipVote = """
+            {"type":"SKIP_VOTE","message":{"participantId":"754909ED-1648-4B51-AB55-4CA6C8910231"},"uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+            """
+        
+        static let removeParticipant = """
+            {"type":"REMOVE_PARTICIPANT","message":{"participantId":"754909ED-1648-4B51-AB55-4CA6C8910231"},"uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+            """
+        
+        static let endSession = """
+            {"type":"END_SESSION","uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+            """
+        
+        static let finishVoting = """
+            {"type":"FINISH_VOTING","uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+            """
+        
+        static let reconnect = """
+            {"type":"RECONNECT","uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+            """
+        
+        static let revote = """
+            {"type":"REVOTE","uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+            """
+        
+        static let editTicket = """
+            {"type":"EDIT_TICKET","message":{"title":"x","selectedTags":["Tag"],"description":"Test"},"uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+            """
+        
+        static let addTimer = """
+            {"type":"ADD_TIMER","message":{"time":2},"uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+            """
+        
+        static let cancelTimer = """
+            {"type":"CANCEL_TIMER","uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+            """
+        
+        static let previousTickets = """
+            {"type":"PREVIOUS_TICKETS","uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+            """
+        
+        static let requestCoffeeBreak = """
+            {"type":"REQUEST_COFFEE_BREAK","uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+            """
+        
+        static let coffeBreakVote = """
+            {"type":"COFFEE_BREAK_VOTE","message":{"vote":true},"uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+            """
+        
+        static let startCoffeeBreakVote = """
+            {"type":"START_COFFEE_BREAK_VOTE","uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+            """
+        
+        static let endCoffeeBreakVote = """
+            {"type":"END_COFFEE_BREAK_VOTE","uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+            """
+        
+        static let finishCoffeeBreakVote = """
+            {"type":"FINISH_COFFEE_BREAK_VOTE","uuid":"754909ED-1648-4B51-AB55-4CA6C8910231"}
+            """
+    }
 }
